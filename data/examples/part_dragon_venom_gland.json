@@ -1,0 +1,42 @@
+{
+  "type": "monster_animal_part",
+  "group": "resource",
+  "id": "part_dragon_venom_gland",
+  "name": "Ядовитые железы дракона",
+  "part_type": "gland",
+  "source_species": "dragon",
+  "rarity": "6_epic",
+  "quality": "fine",
+  "value": 300,
+  "weight": 0.5,
+  "max_stack": 20,
+  "tags": ["monster_part", "poison", "dragon"],
+  "properties": {
+    "enabled": true,
+    "toxicity": 85,
+    "magical": true,
+    "elemental_alignment": "poison",
+    "potency": 2.5
+  },
+  "effects": {
+    "enabled": true,
+    "effects_list": [
+      {
+        "verb": "grants",
+        "target": "poison_damage",
+        "scope": "self",
+        "modifier_type": "flat",
+        "value": "40",
+        "formula": "",
+        "condition": "used_in_alchemy",
+        "note": "Ключевой ингредиент смертельных ядов"
+      }
+    ]
+  },
+  "source_link": {
+    "enabled": true,
+    "source_creature_id": "dragon_new_01",
+    "drop_chance": 15,
+    "requires_skinning": true
+  }
+}

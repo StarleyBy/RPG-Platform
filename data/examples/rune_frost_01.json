@@ -1,0 +1,43 @@
+{
+  "type": "gem_rune",
+  "group": "resource",
+  "id": "rune_frost_01",
+  "name": "Руна холода",
+  "socket_type": "rune",
+  "gem_variety": "not_applicable",
+  "rarity": "5_rare",
+  "gem_tier": 3,
+  "value": 220,
+  "max_stack": 20,
+  "tags": ["rune", "socketable", "ice"],
+  "socket_bonus": {
+    "enabled": true,
+    "bonuses": [
+      {
+        "verb": "grants",
+        "target": "ice_damage",
+        "scope": "self",
+        "modifier_type": "flat",
+        "value": "8-14",
+        "formula": "",
+        "condition": "on_hit",
+        "note": "Добавляет урон холодом к атакам оружия"
+      },
+      {
+        "verb": "enables",
+        "target": "chance_to_freeze_target",
+        "scope": "target",
+        "modifier_type": "percent",
+        "value": "10",
+        "formula": "",
+        "condition": "on_crit",
+        "note": ""
+      }
+    ]
+  },
+  "elemental": {
+    "enabled": true,
+    "element": "ice",
+    "purity": 0.9
+  }
+}

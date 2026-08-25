@@ -1,0 +1,41 @@
+{
+  "id": "scroll_book",
+  "group": "knowledge",
+  "label": "Свитки и Книги",
+  "icon": "📜",
+  "color": "#7a5bd6",
+  "save_path": "res://game_data/items/scroll_book/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "scroll_fireball_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "document_type", "label": "Тип", "type": "enum",
+      "options": ["scroll", "book", "tome", "data_chip", "holo_record", "custom..."]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 3},
+    {"key": "value", "label": "Цена", "type": "float", "default": 80},
+    {"key": "single_use", "label": "Одноразовый", "type": "bool", "default": true},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["scroll"]}
+  ],
+  "sections": [
+    {
+      "key": "spell_learning",
+      "toggle_label": "✨ Обучение заклинанию/способности",
+      "default_on": true,
+      "fields": [
+        {"key": "learned_spell_id", "label": "ID заклинания/способности", "type": "reference", "default": ""},
+        {"key": "magic_school", "label": "Школа магии (опционально)", "type": "enum",
+          "options_ref": "magic_schools", "allow_custom": true, "default": ""},
+        {"key": "cast_on_use", "label": "Применяет эффект сразу (не обучает)", "type": "bool", "default": false},
+        {"key": "cast_effects", "label": "Эффекты немедленного применения", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор / текст книги",
+      "default_on": false,
+      "fields": [
+        {"key": "lore_text", "label": "Текст", "type": "text", "default": ""},
+        {"key": "lore_unlock_id", "label": "Открывает лор-запись", "type": "reference", "default": ""}
+      ]
+    }
+  ]
+}

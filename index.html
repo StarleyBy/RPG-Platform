@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RPG Platform — Manifest Editor</title>
+<link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+
+
+<div id="fileWarning">
+  ⚠️ Страница открыта напрямую из файла (file://). Локальный режим и запросы к GitHub API в таком контексте браузер обычно блокирует.
+  Запусти локальный сервер (например <code>python -m http.server</code> в этой папке) или открой через GitHub Pages.
+</div>
+
+<header>
+  <h1>⚔️ RPG PLATFORM — MANIFEST EDITOR</h1>
+  <span class="src-badge" id="srcBadge">источник: не выбран</span>
+  <span class="status-msg" id="globalStatus" style="margin-left:10px;min-height:auto;padding:0;"></span>
+  <button id="settingsBtn">⚙️ Источник данных</button>
+</header>
+
+<div id="topNav">
+  <button id="navEditorBtn" class="active">✏️ Редактор</button>
+  <button id="navDatabaseBtn">📊 Просмотр и база данных</button>
+  <button id="navDashboardBtn">🧭 Дашборд</button>
+</div>
+
+<div id="app-body">
+  <div id="editorPage" class="page active">
+    <div class="category-picker">
+      <label>Что редактируем?</label>
+      <select id="categorySelect">
+        <option value="">— выберите тип объекта —</option>
+      </select>
+      <div class="hint">Сначала выбери категорию — затем появится список уже созданных объектов этого типа и форма для нового.</div>
+    </div>
+    <div id="categoryBody"></div>
+  </div>
+
+  <div id="databasePage" class="page"></div>
+  <div id="dashboardPage" class="page"></div>
+</div>
+
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-box">
+    <h3>Источник данных</h3>
+    <div class="modal-tabs">
+      <button id="tabLocalBtn" class="active">📁 Локальная папка</button>
+      <button id="tabGithubBtn">🐙 GitHub-репозиторий</button>
+    </div>
+
+    <div id="tabLocal">
+      <p class="hint">Открой корень проекта (папку, где лежат <code>data/</code> и <code>game_data/</code>) — например, распакованный архив редактора. Работает в Chrome/Edge через File System Access API и требует https или localhost.</p>
+      <button id="pickFolderBtn" class="primary" style="width:100%;margin-top:6px;">📂 Выбрать папку проекта</button>
+      <div class="hint" id="localStatus"></div>
+    </div>
+
+    <div id="tabGithub" style="display:none;">
+      <label>Владелец / организация</label>
+      <input id="ghOwner" type="text" placeholder="StarleyBy">
+      <label>Репозиторий</label>
+      <input id="ghRepo" type="text" placeholder="RPG_Platform_Core">
+      <label>Ветка</label>
+      <input id="ghBranch" type="text" placeholder="main" value="main">
+      <label>Токен доступа (нужен только для сохранения/удаления)</label>
+      <input id="ghToken" type="password" placeholder="ghp_...">
+      <p class="hint">Токен хранится только в localStorage твоего браузера и отправляется исключительно в api.github.com. Нужны права <code>repo</code> (или <code>contents:write</code> для fine-grained токена).</p>
+      <button id="connectGithubBtn" class="primary" style="width:100%;margin-top:6px;">🔌 Подключиться</button>
+      <div class="hint" id="githubStatus"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button id="closeSettingsBtn">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Порядок подключения важен: классические скрипты (не ES-модули) делят
+     одно глобальное пространство имён, каждый следующий файл использует
+     то, что объявили предыдущие. Требует http(s)/localhost, не file://
+     (см. #fileWarning выше) — так же, как было в монолитной версии. -->
+<script src="js/ru-dict.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/adapters.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/fields/basic-fields.js"></script>
+<script src="js/fields/ability-list-field.js"></script>
+<script src="js/fields/reference-fields.js"></script>
+<script src="js/fields/level-track-field.js"></script>
+<script src="js/pages/database-page.js"></script>
+<script src="js/pages/editor-page.js"></script>
+<script src="js/pages/dashboard-page.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>

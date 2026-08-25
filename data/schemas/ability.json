@@ -1,0 +1,51 @@
+{
+  "id": "ability",
+  "group": "core",
+  "label": "Способность (каталог)",
+  "icon": "✨",
+  "color": "#5bd68f",
+  "description": "Именованная переиспользуемая способность — то, из чего собираются киты классов, дерева профессий и особые умения существ. Это НЕ то же самое, что произвольные эффекты в ability_list у предметов: там — разовый авторский эффект конкретного предмета, здесь — каталожная сущность, на которую можно многократно ссылаться (классы, профессии, существа).",
+  "save_path": "res://game_data/core/ability/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID способности", "type": "id", "default": "ability_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "ability_type", "label": "Тип", "type": "enum",
+      "options": ["active", "passive", "toggle", "aura", "ultimate", "profession_bonus", "custom..."]},
+    {"key": "description", "label": "Описание", "type": "text", "default": ""},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "effects",
+      "toggle_label": "⚡ Эффекты",
+      "default_on": true,
+      "fields": [
+        {"key": "effects_list", "label": "Эффекты (тот же конструктор, что и у предметов)", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "requirements",
+      "toggle_label": "📋 Требования для получения",
+      "default_on": false,
+      "fields": [
+        {"key": "required_level", "label": "Требуемый уровень", "type": "int", "default": 1},
+        {"key": "required_class", "label": "Требуемый класс (опционально)", "type": "manifest_ref", "ref_type": "character_class"}
+      ]
+    },
+    {
+      "key": "cost",
+      "toggle_label": "💧 Стоимость и кулдаун (для активных)",
+      "default_on": false,
+      "fields": [
+        {"key": "resource_cost", "label": "Стоимость (мана/энергия)", "type": "float", "default": 0},
+        {"key": "cooldown_seconds", "label": "Кулдаун (сек)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

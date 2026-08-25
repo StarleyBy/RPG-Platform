@@ -1,0 +1,59 @@
+{
+  "id": "potion_brew",
+  "group": "consumable",
+  "label": "Зелья и Отвары",
+  "icon": "🧪",
+  "color": "#8a4dd6",
+  "save_path": "res://game_data/items/potion/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "potion_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "potion_type", "label": "Тип", "type": "enum",
+      "options": ["healing", "mana", "buff", "poison", "antidote", "elixir",
+        "explosive_flask", "gas_grenade", "serum", "stimulant", "custom..."]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 3},
+    {"key": "value", "label": "Цена", "type": "float", "default": 40, "min": 0},
+    {"key": "max_stack", "label": "Макс. стак", "type": "int", "default": 10},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["potion"]}
+  ],
+  "sections": [
+    {
+      "key": "effects",
+      "toggle_label": "🧬 Эффекты при употреблении",
+      "default_on": true,
+      "fields": [
+        {"key": "effects_list", "label": "Эффекты", "type": "ability_list"},
+        {"key": "duration_seconds", "label": "Длительность (сек, 0 = мгновенно)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "side_effects",
+      "toggle_label": "⚠️ Побочные эффекты / риски",
+      "default_on": false,
+      "fields": [
+        {"key": "side_effects_list", "label": "Побочные эффекты", "type": "ability_list"},
+        {"key": "overdose_risk", "label": "Риск передозировки", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "brewing",
+      "toggle_label": "⚗️ Рецепт варки",
+      "default_on": false,
+      "fields": [
+        {"key": "required_ingredients", "label": "Ингредиенты (ID, через запятую)", "type": "tags", "default": []},
+        {"key": "required_skill", "label": "Требуемый навык", "type": "string", "default": "alchemy"},
+        {"key": "brew_time_minutes", "label": "Время варки (мин)", "type": "float", "default": 10},
+        {"key": "critical_success_bonus", "label": "Бонус при крит. успехе", "type": "string", "default": ""}
+      ]
+    },
+    {
+      "key": "throwable",
+      "toggle_label": "💣 Метательное (можно бросить как оружие)",
+      "default_on": false,
+      "fields": [
+        {"key": "throw_radius", "label": "Радиус эффекта при броске", "type": "float", "default": 0},
+        {"key": "throw_effects", "label": "Эффекты при попадании", "type": "ability_list"}
+      ]
+    }
+  ]
+}

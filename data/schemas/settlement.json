@@ -1,0 +1,90 @@
+{
+  "id": "settlement",
+  "group": "world",
+  "label": "Город / Деревня / Станция / Колония",
+  "icon": "🏙️",
+  "color": "#d6a13d",
+  "save_path": "res://game_data/world/settlement/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "settlement_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "settlement_type", "label": "Тип", "type": "enum",
+      "options": ["city", "village", "town", "space_station", "colony", "outpost", "camp", "custom..."]},
+    {"key": "parent", "label": "Родитель (регион/планета, ID)", "type": "reference", "default": ""},
+    {"key": "coord_x", "label": "Координата X", "type": "float", "default": 0},
+    {"key": "coord_y", "label": "Координата Y", "type": "float", "default": 0},
+    {"key": "population", "label": "Население", "type": "float", "default": 500},
+    {"key": "government_type", "label": "Тип правления", "type": "enum",
+      "options": ["monarchy", "republic", "council", "theocracy", "corporate",
+        "tribal", "anarchy", "ai_governed", "military", "hive_mind", "nomad_council", "custom..."]},
+    {"key": "faction", "label": "Фракция", "type": "enum", "options_ref": "velara_factions",
+      "allow_custom": true, "default": ""},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "state",
+      "toggle_label": "🏳️ Состояние",
+      "default_on": true,
+      "fields": [
+        {"key": "state", "label": "Текущее состояние", "type": "enum", "options_ref": "location_states"},
+        {"key": "discovered", "label": "Открыто игроком", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "districts",
+      "toggle_label": "🏘️ Районы",
+      "default_on": false,
+      "fields": [
+        {"key": "district_ids", "label": "ID районов", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "economy",
+      "toggle_label": "💰 Экономика",
+      "default_on": false,
+      "fields": [
+        {"key": "wealth_level", "label": "Уровень достатка (0-10)", "type": "float", "default": 5},
+        {"key": "primary_exports", "label": "Основной экспорт", "type": "tags", "default": []},
+        {"key": "currency", "label": "Валюта", "type": "string", "default": "gold"},
+        {"key": "trade_routes", "label": "Торговые маршруты (ID поселений)", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "defenses",
+      "toggle_label": "🛡️ Оборона",
+      "default_on": false,
+      "fields": [
+        {"key": "walls", "label": "Есть стены", "type": "bool", "default": false},
+        {"key": "guard_count", "label": "Кол-во стражи", "type": "int", "default": 0},
+        {"key": "defense_rating", "label": "Рейтинг обороны", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "services",
+      "toggle_label": "🛒 Сервисы",
+      "default_on": false,
+      "fields": [
+        {"key": "shops", "label": "Магазины", "type": "tags", "default": []},
+        {"key": "guilds", "label": "Гильдии", "type": "tags", "default": []},
+        {"key": "temples", "label": "Храмы/святилища", "type": "tags", "default": []},
+        {"key": "fast_travel_enabled", "label": "Быстрое перемещение доступно", "type": "bool", "default": true}
+      ]
+    },
+    {
+      "key": "npcs_and_encounters",
+      "toggle_label": "🧑 NPC и встречи",
+      "default_on": false,
+      "fields": [
+        {"key": "notable_npcs", "label": "Заметные NPC (ID)", "type": "tags", "default": []},
+        {"key": "encounter_zones", "label": "Зоны встреч", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

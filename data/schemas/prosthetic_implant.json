@@ -1,0 +1,70 @@
+{
+  "id": "prosthetic_implant",
+  "group": "equipment",
+  "label": "Протезы и Импланты",
+  "icon": "🦾",
+  "color": "#5b8fd6",
+  "description": "Механические/биоинженерные/магические протезы и импланты (рука, глаз, позвоночник, органы).",
+  "save_path": "res://game_data/items/implant/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "implant_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "body_slot", "label": "Часть тела", "type": "enum",
+      "options": ["arm", "leg", "hand", "eye", "ear", "spine", "heart", "lung",
+        "brain_module", "skin_layer", "internal_organ", "full_limb", "custom..."]},
+    {"key": "origin_type", "label": "Тип происхождения", "type": "enum",
+      "options": ["mechanical", "cybernetic", "bio_engineered", "magical", "demonic", "alien_tech"]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 4},
+    {"key": "quality", "label": "Качество", "type": "enum", "options_ref": "quality_tiers", "default_index": 3},
+    {"key": "value", "label": "Цена", "type": "float", "default": 800, "min": 0},
+    {"key": "durability_max", "label": "Прочность", "type": "int", "default": 200},
+    {"key": "requires_surgery", "label": "Требует операции для установки", "type": "bool", "default": true},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["implant"]}
+  ],
+  "sections": [
+    {
+      "key": "stat_effects",
+      "toggle_label": "⚙️ Модификаторы характеристик",
+      "default_on": true,
+      "fields": [
+        {"key": "effects", "label": "Эффекты", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "power_system",
+      "toggle_label": "🔋 Питание (для механических/кибернетических)",
+      "default_on": false,
+      "fields": [
+        {"key": "power_source", "label": "Источник энергии", "type": "string", "default": "biocharge"},
+        {"key": "battery_life_hours", "label": "Заряд хватает на (часы)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "side_effects",
+      "toggle_label": "⚠️ Побочные эффекты / отторжение",
+      "default_on": false,
+      "fields": [
+        {"key": "rejection_chance", "label": "Шанс отторжения (%)", "type": "float", "default": 0},
+        {"key": "side_effects_list", "label": "Побочные эффекты", "type": "ability_list"},
+        {"key": "sanity_cost", "label": "Стоимость рассудка (для демонич./аларх. имплантов)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "upgrade",
+      "toggle_label": "⬆️ Модернизация",
+      "default_on": false,
+      "fields": [
+        {"key": "upgrade_slots", "label": "Слоты модернизации", "type": "int", "default": 0},
+        {"key": "installed_modules", "label": "Установленные модули", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [
+        {"key": "lore_text", "label": "Текст лора", "type": "text", "default": ""}
+      ]
+    }
+  ]
+}

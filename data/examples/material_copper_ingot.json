@@ -1,0 +1,36 @@
+{
+  "type": "material_raw",
+  "group": "resource",
+  "id": "material_copper_ingot",
+  "name": "Брусок меди",
+  "category": "metal",
+  "subtype": "copper",
+  "processing_stage": "processed",
+  "rarity": "3_common",
+  "quality": "normal",
+  "value": 8,
+  "weight": 1.5,
+  "max_stack": 100,
+  "tags": ["material", "crafting", "metal"],
+  "physical_properties": {
+    "enabled": true,
+    "hardness": 35,
+    "density": 8.9,
+    "conductivity": 90,
+    "heat_resistance": 40,
+    "corrosion_resistance": 60,
+    "physical_state": "solid"
+  },
+  "ore_data": {
+    "enabled": true,
+    "metal": "copper",
+    "purity": 0.82,
+    "smelting_yield": 0.7,
+    "smelting_temperature": 1085,
+    "impurities": ["sulfur"]
+  },
+  "uses": {
+    "enabled": true,
+    "possible_uses": ["crafting", "trade", "blacksmithing", "electronics"]
+  }
+}

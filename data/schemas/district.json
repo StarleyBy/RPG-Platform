@@ -1,0 +1,60 @@
+{
+  "id": "district",
+  "group": "world",
+  "label": "Район поселения",
+  "icon": "🏘️",
+  "color": "#d68a3d",
+  "save_path": "res://game_data/world/district/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "district_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "district_type", "label": "Тип района", "type": "enum",
+      "options": ["castle", "market", "poor_district", "noble_district", "harbor",
+        "industrial", "temple", "slums", "university", "military", "residential", "custom..."]},
+    {"key": "parent_settlement", "label": "Поселение (ID)", "type": "reference", "default": ""},
+    {"key": "coord_x", "label": "Координата X", "type": "float", "default": 0},
+    {"key": "coord_y", "label": "Координата Y", "type": "float", "default": 0},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "character",
+      "toggle_label": "🏚️ Характер района",
+      "default_on": true,
+      "fields": [
+        {"key": "wealth_level", "label": "Уровень достатка (0-10)", "type": "float", "default": 5},
+        {"key": "safety_level", "label": "Уровень безопасности (0-10)", "type": "float", "default": 5},
+        {"key": "population", "label": "Население", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "buildings",
+      "toggle_label": "🏛️ Здания",
+      "default_on": false,
+      "fields": [
+        {"key": "building_ids", "label": "ID зданий", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "npcs_and_shops",
+      "toggle_label": "🧑 NPC и магазины",
+      "default_on": false,
+      "fields": [
+        {"key": "notable_npcs", "label": "Заметные NPC", "type": "tags", "default": []},
+        {"key": "shops", "label": "Магазины", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "encounters",
+      "toggle_label": "⚔️ Встречи",
+      "default_on": false,
+      "fields": [{"key": "encounter_zones", "label": "Зоны встреч", "type": "ability_list"}]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

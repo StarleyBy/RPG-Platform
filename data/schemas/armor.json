@@ -1,0 +1,306 @@
+{
+  "id": "armor",
+  "group": "equipment",
+  "label": "Броня",
+  "icon": "🛡️",
+  "color": "#4a8f5c",
+  "save_path": "res://game_data/items/armor/%s.json",
+  "base_fields": [
+    {
+      "key": "id",
+      "label": "ID предмета",
+      "type": "id",
+      "default": "armor_new_01"
+    },
+    {
+      "key": "name",
+      "label": "Название",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "key": "subtype",
+      "label": "Подтип",
+      "type": "enum",
+      "options": [
+        "helmet",
+        "chest",
+        "gloves",
+        "boots",
+        "pauldrons",
+        "cloak",
+        "shield",
+        "power_armor_piece",
+        "exosuit_module",
+        "spacesuit_piece",
+        "custom..."
+      ]
+    },
+    {
+      "key": "armor_class",
+      "label": "Класс брони",
+      "type": "enum",
+      "options_ref": "armor_classes"
+    },
+    {
+      "key": "rarity",
+      "label": "Редкость",
+      "type": "enum",
+      "options_ref": "rarity_tiers",
+      "default_index": 5
+    },
+    {
+      "key": "quality",
+      "label": "Качество",
+      "type": "enum",
+      "options_ref": "quality_tiers",
+      "default_index": 3
+    },
+    {
+      "key": "material",
+      "label": "Материал",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "key": "value",
+      "label": "Цена",
+      "type": "float",
+      "default": 100,
+      "min": 0
+    },
+    {
+      "key": "weight",
+      "label": "Вес",
+      "type": "float",
+      "default": 5.0,
+      "min": 0
+    },
+    {
+      "key": "durability_max",
+      "label": "Прочность",
+      "type": "int",
+      "default": 150,
+      "min": 0
+    },
+    {
+      "key": "set_id",
+      "label": "ID сета",
+      "type": "reference",
+      "default": ""
+    },
+    {
+      "key": "tags",
+      "label": "Теги",
+      "type": "tags",
+      "default": [
+        "armor"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "key": "defense",
+      "toggle_label": "🛡️ Защита",
+      "default_on": true,
+      "fields": [
+        {
+          "key": "armor_value",
+          "label": "Броня",
+          "type": "float",
+          "default": 20
+        },
+        {
+          "key": "block_chance",
+          "label": "Шанс блока (%)",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "movement_penalty",
+          "label": "Штраф скорости (%)",
+          "type": "float",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "key": "resistances",
+      "toggle_label": "🔥 Сопротивления стихиям",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "fire",
+          "label": "Огонь",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "ice",
+          "label": "Холод",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "lightning",
+          "label": "Молния",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "poison",
+          "label": "Яд",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "holy",
+          "label": "Свет",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "shadow",
+          "label": "Тьма",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "void",
+          "label": "Пустота",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "radiation",
+          "label": "Радиация",
+          "type": "float",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "key": "sockets",
+      "toggle_label": "💎 Сокеты",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "socket_count",
+          "label": "Кол-во сокетов",
+          "type": "int",
+          "default": 0,
+          "min": 0,
+          "max": 8
+        },
+        {
+          "key": "socket_types",
+          "label": "Разрешённые типы",
+          "type": "tags",
+          "default": [
+            "gem",
+            "rune"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "affixes",
+      "toggle_label": "📜 Аффиксы / бонусные способности",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "affixes",
+          "label": "Аффиксы",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "set_bonus",
+      "toggle_label": "🔗 Сет-предмет",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "set_bonuses",
+          "label": "Бонусы сета",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "tech_armor",
+      "toggle_label": "🤖 Технологичная броня (силовая, экзоскелет, скафандр)",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "power_source",
+          "label": "Источник энергии",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "key": "oxygen_supply_minutes",
+          "label": "Запас кислорода (мин)",
+          "type": "int",
+          "default": 0
+        },
+        {
+          "key": "hud_modules",
+          "label": "Модули HUD",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "servo_boost_percent",
+          "label": "Усиление силы сервоприводами (%)",
+          "type": "float",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "key": "restrictions",
+      "toggle_label": "🚫 Ограничения",
+      "default_on": false,
+      "fields": [
+        {
+          "type": "manifest_multiref",
+          "ref_type": "character_class",
+          "key": "class_restrictions",
+          "label": "Классы"
+        },
+        {
+          "type": "vocab_multiselect",
+          "options_ref": "creature_species",
+          "key": "race_restrictions",
+          "label": "Расы/виды"
+        },
+        {
+          "key": "required_level",
+          "label": "Требуемый уровень",
+          "type": "int",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "lore_text",
+          "label": "Текст лора",
+          "type": "text",
+          "default": ""
+        },
+        {
+          "key": "unique",
+          "label": "Уникальный предмет",
+          "type": "bool",
+          "default": false
+        }
+      ]
+    }
+  ]
+}

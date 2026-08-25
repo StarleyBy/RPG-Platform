@@ -1,0 +1,47 @@
+{
+  "type": "plant_organic",
+  "group": "resource",
+  "id": "plant_nettle_leaf",
+  "name": "Лист крапивы",
+  "species": "nettle",
+  "harvested_part": "leaf",
+  "growth_stage": "mature",
+  "rarity": "2_poor",
+  "quality": "normal",
+  "value": 3,
+  "weight": 0.05,
+  "max_stack": 50,
+  "tags": ["plant", "herb"],
+  "properties": {
+    "enabled": true,
+    "poisonous": false,
+    "medicinal": true,
+    "magical": false,
+    "edible": true
+  },
+  "effects": {
+    "enabled": true,
+    "effects_list": [
+      {
+        "verb": "restores",
+        "target": "health",
+        "scope": "self",
+        "modifier_type": "flat",
+        "value": "5",
+        "formula": "",
+        "condition": "on_consume",
+        "note": "Лёгкое лечебное действие при заваривании в чай"
+      },
+      {
+        "verb": "increases",
+        "target": "resistance_poison",
+        "scope": "self",
+        "modifier_type": "percent",
+        "value": "3",
+        "formula": "",
+        "condition": "duration_300s",
+        "note": "Временное укрепление сопротивления яду"
+      }
+    ]
+  }
+}

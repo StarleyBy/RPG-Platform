@@ -1,0 +1,67 @@
+{
+  "id": "connection_link",
+  "group": "world",
+  "label": "Связь (дверь / портал / дорога / маршрут)",
+  "icon": "🔗",
+  "color": "#3dd68a",
+  "description": "Ребро World Graph — соединяет любые два узла мира (комнату с комнатой, город с городом, планету с планетой).",
+  "save_path": "res://game_data/world/connection_link/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID связи", "type": "id", "default": "conn_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "connection_type", "label": "Тип связи", "type": "enum",
+      "options": ["door", "portal", "teleporter", "elevator", "stairs", "tunnel",
+        "wormhole", "road", "ship_route", "train_route", "airship_route",
+        "fast_travel", "custom..."]},
+    {"key": "from_id", "label": "Откуда (ID узла)", "type": "reference", "default": ""},
+    {"key": "to_id", "label": "Куда (ID узла)", "type": "reference", "default": ""}
+  ],
+  "sections": [
+    {
+      "key": "travel",
+      "toggle_label": "🧭 Перемещение",
+      "default_on": true,
+      "fields": [
+        {"key": "bidirectional", "label": "Двунаправленная", "type": "bool", "default": true},
+        {"key": "distance_km", "label": "Расстояние (км)", "type": "float", "default": 0},
+        {"key": "travel_time_minutes", "label": "Время в пути (мин)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "requirements",
+      "toggle_label": "🔒 Требования / замки",
+      "default_on": false,
+      "fields": [
+        {"key": "locked", "label": "Заперто", "type": "bool", "default": false},
+        {"key": "required_quest", "label": "Требуемый квест (ID)", "type": "reference", "default": ""},
+        {"key": "required_item", "label": "Требуемый предмет (ID)", "type": "reference", "default": ""},
+        {"key": "required_faction_standing", "label": "Требуемая репутация", "type": "string", "default": ""}
+      ]
+    },
+    {
+      "key": "danger",
+      "toggle_label": "⚠️ Опасность в пути",
+      "default_on": false,
+      "fields": [
+        {"key": "danger_level", "label": "Уровень опасности", "type": "float", "default": 0},
+        {"key": "encounter_zones", "label": "Зоны встреч в пути", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "visual",
+      "toggle_label": "🎨 Отображение на карте",
+      "default_on": false,
+      "fields": [
+        {"key": "path_style", "label": "Стиль пути", "type": "enum",
+          "options": ["straight", "curved", "road_winding", "hidden"]},
+        {"key": "line_color", "label": "Цвет линии", "type": "color", "default": "#d6c73d"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

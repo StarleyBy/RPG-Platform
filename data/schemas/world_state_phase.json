@@ -1,0 +1,40 @@
+{
+  "id": "world_state_phase",
+  "group": "world",
+  "label": "Фаза мира (динамика)",
+  "icon": "🕰️",
+  "color": "#6f3dd6",
+  "description": "Снимок изменений мира: 'До квеста' -> 'После квеста'. Позволяет миру жить и меняться независимо от игрока.",
+  "save_path": "res://game_data/world/world_state_phase/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID фазы", "type": "id", "default": "phase_new_01"},
+    {"key": "name", "label": "Название фазы", "type": "string", "default": ""},
+    {"key": "phase_order", "label": "Порядковый номер", "type": "int", "default": 1},
+    {"key": "world_id", "label": "Мир (ID)", "type": "reference", "default": ""}
+  ],
+  "sections": [
+    {
+      "key": "trigger",
+      "toggle_label": "🎬 Триггер перехода",
+      "default_on": true,
+      "fields": [
+        {"key": "trigger_type", "label": "Тип триггера", "type": "enum",
+          "options": ["quest_completion", "time_elapsed", "player_choice", "scripted_event"]},
+        {"key": "trigger_condition", "label": "Условие", "type": "string", "default": ""}
+      ]
+    },
+    {
+      "key": "changes",
+      "toggle_label": "🔄 Изменения мира",
+      "default_on": true,
+      "note": "Каждая строка: verb=sets_state, target=ID_локации, value=новое_состояние.",
+      "fields": [{"key": "location_state_changes", "label": "Изменения состояний локаций", "type": "ability_list"}]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Описание фазы",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

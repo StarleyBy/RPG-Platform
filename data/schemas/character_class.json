@@ -1,0 +1,58 @@
+{
+  "id": "character_class",
+  "group": "core",
+  "label": "Класс персонажа",
+  "icon": "🛡️",
+  "color": "#d6a13d",
+  "description": "Игровой класс — фундамент, на который ссылаются ограничения экипировки (class_restrictions), требования способностей и т.д. Именно ради этого поля появился новый тип поля 'manifest_multiref': вместо свободного ввода текста ('вор'/'плут'/'ассасин' как три разных значения по ошибке) — выбор из уже существующих классов.",
+  "save_path": "res://game_data/core/character_class/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID класса", "type": "id", "default": "class_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "class_role", "label": "Роль", "type": "enum",
+      "options": ["tank", "dps_melee", "dps_ranged", "dps_magic", "healer", "support", "hybrid", "custom..."]},
+    {"key": "description", "label": "Описание", "type": "text", "default": ""}
+  ],
+  "sections": [
+    {
+      "key": "proficiencies",
+      "toggle_label": "⚔️ Владение оружием и бронёй",
+      "default_on": true,
+      "fields": [
+        {"key": "weapon_proficiency", "label": "Разрешённые типы оружия", "type": "vocab_multiselect", "options_ref": "weapon_subtypes"},
+        {"key": "armor_proficiency", "label": "Разрешённые классы брони", "type": "vocab_multiselect", "options_ref": "armor_classes"}
+      ]
+    },
+    {
+      "key": "kit",
+      "toggle_label": "✨ Набор способностей класса",
+      "default_on": true,
+      "fields": [
+        {"key": "class_abilities", "label": "Способности класса", "type": "manifest_multiref", "ref_type": "ability"}
+      ]
+    },
+    {
+      "key": "combat_profile",
+      "toggle_label": "🛡️ Сопротивления и уязвимости",
+      "default_on": false,
+      "fields": [
+        {"key": "innate_resistances", "label": "Врождённые сопротивления", "type": "vocab_multiselect", "options_ref": "damage_types"},
+        {"key": "innate_vulnerabilities", "label": "Врождённые уязвимости", "type": "vocab_multiselect", "options_ref": "damage_types"}
+      ]
+    },
+    {
+      "key": "faction_ties",
+      "toggle_label": "🚩 Связь с фракциями",
+      "default_on": false,
+      "fields": [
+        {"key": "associated_factions", "label": "Ассоциированные фракции", "type": "vocab_multiselect", "options_ref": "velara_factions"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

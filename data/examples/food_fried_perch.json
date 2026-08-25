@@ -1,0 +1,40 @@
+{
+  "type": "food",
+  "group": "consumable",
+  "id": "food_fried_perch",
+  "name": "Окунь жареный",
+  "food_type": "cooked_fish",
+  "rarity": "2_poor",
+  "value": 6,
+  "max_stack": 20,
+  "tags": ["food", "fish"],
+  "nutrition": {
+    "enabled": true,
+    "hunger_restored": 25,
+    "health_restored": 5,
+    "buffs": [
+      {
+        "verb": "increases",
+        "target": "health_regen",
+        "scope": "self",
+        "modifier_type": "flat",
+        "value": "2",
+        "formula": "",
+        "condition": "duration_600s",
+        "note": "Сытость от рыбного блюда"
+      }
+    ]
+  },
+  "freshness": {
+    "enabled": true,
+    "freshness_hours": 24,
+    "spoiled_result": "food_rotten_fish",
+    "preservation_method": "smoking"
+  },
+  "cooking": {
+    "enabled": true,
+    "raw_ingredient_id": "fish_perch_raw",
+    "cooking_method": "fry",
+    "cooking_skill_bonus": 0
+  }
+}

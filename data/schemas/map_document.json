@@ -1,0 +1,39 @@
+{
+  "id": "map_document",
+  "group": "knowledge",
+  "label": "Карты и Документы",
+  "icon": "🗺️",
+  "color": "#3dd6b0",
+  "save_path": "res://game_data/items/map_document/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "map_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "document_type", "label": "Тип", "type": "enum",
+      "options": ["treasure_map", "world_map_fragment", "letter", "evidence",
+        "contract", "encrypted_file", "custom..."]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 3},
+    {"key": "value", "label": "Цена", "type": "float", "default": 20},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["document"]}
+  ],
+  "sections": [
+    {
+      "key": "reveal",
+      "toggle_label": "📍 Открывает локацию/квест",
+      "default_on": true,
+      "fields": [
+        {"key": "reveals_location_id", "label": "ID локации", "type": "reference", "default": ""},
+        {"key": "starts_quest_id", "label": "Запускает квест (ID)", "type": "reference", "default": ""},
+        {"key": "requires_decryption", "label": "Требует расшифровки", "type": "bool", "default": false},
+        {"key": "decryption_skill", "label": "Навык расшифровки", "type": "string", "default": ""}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Содержание",
+      "default_on": false,
+      "fields": [
+        {"key": "content_text", "label": "Текст документа", "type": "text", "default": ""}
+      ]
+    }
+  ]
+}

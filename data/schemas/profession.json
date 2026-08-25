@@ -1,0 +1,55 @@
+{
+  "id": "profession",
+  "group": "core",
+  "label": "Профессия",
+  "icon": "⛏️",
+  "color": "#8fa13d",
+  "description": "25 уровней, от новичка до грандмастера. Прокачка после 20 — практически бесконечная, но бонусы 21-25 огромны (это описывается в scaling_bonus формулой, а не жёстко зашитыми числами). Пример: 'Шахтёр' 5 уровня открывает шанс попутной добычи полудрагоценных камней/рун/готовых слитков — это конкретные РЕСУРСЫ, которые должны уже существовать как манифесты material_raw/gem_rune, чтобы их можно было выбрать в level_progression.",
+  "save_path": "res://game_data/core/profession/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID профессии", "type": "id", "default": "profession_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "profession_category", "label": "Категория", "type": "enum",
+      "options": ["gathering", "crafting", "combat_support", "social", "custom..."]},
+    {"key": "max_level", "label": "Макс. уровень", "type": "int", "default": 25, "min": 1, "max": 100},
+    {"key": "tier_names", "label": "Названия ступеней (по порядку)", "type": "tags",
+      "default": ["novice", "apprentice", "expert", "master", "grandmaster"]},
+    {"key": "description", "label": "Описание", "type": "text", "default": ""}
+  ],
+  "sections": [
+    {
+      "key": "level_progression",
+      "toggle_label": "📈 Прогрессия по уровням",
+      "default_on": true,
+      "note": "Каждая строка = один уровень открытия: что становится доступно (способности/ресурсы для добычи или крафта) на этом уровне. Списки ресурсов и способностей тянутся из уже созданных манифестов — жми '🔄 Обновить список' в поле, если добавил новые material_raw/ability после того, как открыл эту форму.",
+      "fields": [
+        {"key": "milestones", "label": "Уровни открытия", "type": "level_track"}
+      ]
+    },
+    {
+      "key": "scaling_bonus",
+      "toggle_label": "📐 Формула растущего бонуса",
+      "default_on": false,
+      "note": "Пример для шахтёра: после 5 уровня появляется шанс побочной добычи, растущий с каждым уровнем. Формула, а не фиксированное число — потому что 21-25 уровни должны давать несоразмерно большой прирост.",
+      "fields": [
+        {"key": "bonus_description", "label": "Что описывает формула", "type": "string", "default": "шанс побочной добычи редких материалов"},
+        {"key": "chance_formula", "label": "Формула", "type": "formula",
+          "default": "0.005 * max(0, PROFESSION_LEVEL - 5)"}
+      ]
+    },
+    {
+      "key": "class_synergy",
+      "toggle_label": "🔗 Синергия с классами",
+      "default_on": false,
+      "fields": [
+        {"key": "bonus_classes", "label": "Классы с бонусом к этой профессии", "type": "manifest_multiref", "ref_type": "character_class"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

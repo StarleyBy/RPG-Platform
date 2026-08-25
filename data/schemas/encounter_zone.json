@@ -1,0 +1,45 @@
+{
+  "id": "encounter_zone",
+  "group": "world",
+  "label": "Зона встреч (переиспользуемая)",
+  "icon": "⚔️",
+  "color": "#d63d3d",
+  "description": "Самостоятельное определение зоны спавна, на которое можно ссылаться с любой локации по ID.",
+  "save_path": "res://game_data/world/encounter_zone/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "encounter_zone_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "zone_type", "label": "Тип", "type": "enum",
+      "options": ["wolves", "bandits", "undead", "dragons", "patrol", "random_event", "custom..."]},
+    {"key": "parent_location", "label": "Локация (ID)", "type": "reference", "default": ""}
+  ],
+  "sections": [
+    {
+      "key": "spawn_rules",
+      "toggle_label": "🎲 Правила спавна",
+      "default_on": true,
+      "fields": [
+        {"key": "chance", "label": "Шанс (0-1)", "type": "float", "default": 0.1, "step": 0.01},
+        {"key": "min_level", "label": "Мин. уровень", "type": "int", "default": 1},
+        {"key": "max_level", "label": "Макс. уровень", "type": "int", "default": 5},
+        {"key": "creature_pool", "label": "Пул существ (ID)", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "conditions",
+      "toggle_label": "🌦️ Условия появления",
+      "default_on": false,
+      "fields": [
+        {"key": "time_of_day", "label": "Время суток", "type": "enum",
+          "options": ["any", "day_only", "night_only", "dusk_dawn"]},
+        {"key": "weather_requirements", "label": "Требуемая погода", "type": "enum", "options_ref": "weather_types"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Заметки",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

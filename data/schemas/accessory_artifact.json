@@ -1,0 +1,244 @@
+{
+  "id": "accessory_artifact",
+  "group": "equipment",
+  "label": "Кольца, Амулеты, Артефакты, Реликвии",
+  "icon": "💍",
+  "color": "#a35bd6",
+  "description": "Не наносит урон напрямую — усиливает/даёт способности через формулы и аффиксы. Пример: 'Артефакт усиливает весь физический урон на 15% + 0.1% от уровня героя'.",
+  "save_path": "res://game_data/items/accessory/%s.json",
+  "base_fields": [
+    {
+      "key": "id",
+      "label": "ID предмета",
+      "type": "id",
+      "default": "artifact_new_01"
+    },
+    {
+      "key": "name",
+      "label": "Название",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "key": "subtype",
+      "label": "Подтип",
+      "type": "enum",
+      "options": [
+        "ring",
+        "amulet",
+        "artifact",
+        "relic",
+        "trinket",
+        "talisman",
+        "implant_accessory",
+        "cybernetic_module",
+        "custom..."
+      ]
+    },
+    {
+      "key": "equipment_slot",
+      "label": "Слот",
+      "type": "enum",
+      "options": [
+        "ring_1",
+        "ring_2",
+        "amulet",
+        "artifact_slot",
+        "trinket_slot"
+      ]
+    },
+    {
+      "key": "rarity",
+      "label": "Редкость",
+      "type": "enum",
+      "options_ref": "rarity_tiers",
+      "default_index": 6
+    },
+    {
+      "key": "quality",
+      "label": "Качество",
+      "type": "enum",
+      "options_ref": "quality_tiers",
+      "default_index": 5
+    },
+    {
+      "key": "value",
+      "label": "Цена",
+      "type": "float",
+      "default": 500,
+      "min": 0
+    },
+    {
+      "key": "weight",
+      "label": "Вес",
+      "type": "float",
+      "default": 0.2,
+      "min": 0
+    },
+    {
+      "key": "set_id",
+      "label": "ID сета",
+      "type": "reference",
+      "default": ""
+    },
+    {
+      "key": "unique",
+      "label": "Уникальный предмет (One-of-a-kind)",
+      "type": "bool",
+      "default": false
+    },
+    {
+      "key": "tags",
+      "label": "Теги",
+      "type": "tags",
+      "default": [
+        "artifact"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "key": "power",
+      "toggle_label": "✨ Способности артефакта",
+      "default_on": true,
+      "note": "Это ГЛАВНАЯ секция: каждая строка = 'глагол + цель + модификатор + значение'. Пример строки: verb=increases, target=physical_damage, modifier=percent_of_base, value=15, formula='+ 0.001 * PLAYER_LEVEL'.",
+      "fields": [
+        {
+          "key": "abilities",
+          "label": "Список способностей / усилений",
+          "type": "ability_list"
+        },
+        {
+          "key": "magic_school",
+          "label": "Школа магии (опционально)",
+          "type": "enum",
+          "options_ref": "magic_schools",
+          "allow_custom": true,
+          "default": ""
+        }
+      ]
+    },
+    {
+      "key": "passive_aura",
+      "toggle_label": "🌟 Пассивная аура (действует на область/группу)",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "aura_radius",
+          "label": "Радиус ауры",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "aura_effects",
+          "label": "Эффекты ауры",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "activated",
+      "toggle_label": "🔮 Активируемая способность (по нажатию, с кулдауном)",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "cooldown_seconds",
+          "label": "Кулдаун (сек)",
+          "type": "float",
+          "default": 30
+        },
+        {
+          "key": "resource_cost",
+          "label": "Стоимость (мана/энергия)",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "activated_effects",
+          "label": "Эффекты активации",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "condition_state",
+      "toggle_label": "🌒 Условные / проклятые / эволюционирующие свойства",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "cursed",
+          "label": "Проклято",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "corrupted",
+          "label": "Осквернено",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "evolves_with_kills",
+          "label": "Эволюционирует от убийств",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "evolution_stages",
+          "label": "Стадии эволюции",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "restrictions",
+      "toggle_label": "🚫 Ограничения",
+      "default_on": false,
+      "fields": [
+        {
+          "type": "manifest_multiref",
+          "ref_type": "character_class",
+          "key": "class_restrictions",
+          "label": "Классы"
+        },
+        {
+          "type": "vocab_multiselect",
+          "options_ref": "creature_species",
+          "key": "race_restrictions",
+          "label": "Расы/виды"
+        },
+        {
+          "key": "soulbound",
+          "label": "Привязка к душе",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "required_level",
+          "label": "Требуемый уровень",
+          "type": "int",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "lore_text",
+          "label": "Текст лора",
+          "type": "text",
+          "default": ""
+        },
+        {
+          "key": "lore_unlock_id",
+          "label": "Открывает лор-запись",
+          "type": "reference",
+          "default": ""
+        }
+      ]
+    }
+  ]
+}

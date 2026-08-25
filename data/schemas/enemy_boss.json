@@ -1,0 +1,97 @@
+{
+  "id": "enemy_boss",
+  "group": "enemy",
+  "label": "Босс / Рейд-босс",
+  "icon": "👑",
+  "color": "#d64dae",
+  "description": "Отдельная страница для боссов: фазы, энрейдж, телеграфы атак.",
+  "save_path": "res://game_data/enemies/boss/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID босса", "type": "id", "default": "boss_new_01"},
+    {"key": "name", "label": "Имя", "type": "string", "default": ""},
+    {"key": "species_group", "label": "Группа видов", "type": "string", "default": ""},
+    {"key": "rank", "label": "Ранг", "type": "enum",
+      "options": ["mini_boss", "boss", "raid_boss", "world_boss"], "default_index": 1},
+    {"key": "level", "label": "Уровень", "type": "int", "default": 20},
+    {"key": "recommended_party_size", "label": "Рекомендуемый размер группы", "type": "int", "default": 1},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["boss"]}
+  ],
+  "sections": [
+    {
+      "key": "core_stats",
+      "toggle_label": "❤️ Основные характеристики",
+      "default_on": true,
+      "fields": [
+        {"key": "max_hp", "label": "Здоровье", "type": "float", "default": 10000},
+        {"key": "armor", "label": "Броня", "type": "float", "default": 50},
+        {"key": "magic_resist", "label": "Магическое сопротивление", "type": "float", "default": 30},
+        {"key": "cc_resistance", "label": "Сопротивление контролю (%)", "type": "float", "default": 70}
+      ]
+    },
+    {
+      "key": "phases",
+      "toggle_label": "🌀 Фазы боя",
+      "default_on": true,
+      "note": "Каждая фаза = отдельная строка: verb=triggers, target=phase_2, modifier=conditional, condition='hp_below_30'.",
+      "fields": [
+        {"key": "phase_count", "label": "Количество фаз", "type": "int", "default": 3, "min": 1},
+        {"key": "phase_transitions", "label": "Переходы между фазами", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "enrage",
+      "toggle_label": "🔥 Энрейдж (усиление по таймеру/условию)",
+      "default_on": false,
+      "fields": [
+        {"key": "enrage_timer_seconds", "label": "Таймер энрейджа (сек)", "type": "float", "default": 0},
+        {"key": "enrage_effects", "label": "Эффекты энрейджа", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "special_attacks",
+      "toggle_label": "💥 Особые атаки и телеграфы",
+      "default_on": true,
+      "fields": [
+        {"key": "special_attacks", "label": "Особые атаки", "type": "ability_list"},
+        {"key": "telegraph_time_seconds", "label": "Время предупреждения атаки (сек)", "type": "float", "default": 2.0}
+      ]
+    },
+    {
+      "key": "add_summons",
+      "toggle_label": "👥 Призыв приспешников",
+      "default_on": false,
+      "fields": [
+        {"key": "summoned_creatures", "label": "Призываемые существа (ID)", "type": "tags", "default": []},
+        {"key": "summon_triggers", "label": "Условия призыва", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "environment_interaction",
+      "toggle_label": "🌋 Взаимодействие с ареной",
+      "default_on": false,
+      "fields": [
+        {"key": "arena_hazards", "label": "Опасности арены", "type": "ability_list"},
+        {"key": "destructible_terrain", "label": "Разрушаемая арена", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "loot",
+      "toggle_label": "💰 Награда",
+      "default_on": true,
+      "fields": [
+        {"key": "guaranteed_loot", "label": "Гарантированная добыча (ID)", "type": "tags", "default": []},
+        {"key": "loot_table", "label": "Таблица добычи", "type": "ability_list"},
+        {"key": "experience_reward", "label": "Опыт", "type": "float", "default": 5000}
+      ]
+    },
+    {
+      "key": "narrative",
+      "toggle_label": "📖 Лор / сюжетная роль",
+      "default_on": false,
+      "fields": [
+        {"key": "lore_text", "label": "Лор", "type": "text", "default": ""},
+        {"key": "related_quest_ids", "label": "Связанные квесты", "type": "tags", "default": []}
+      ]
+    }
+  ]
+}

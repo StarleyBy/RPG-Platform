@@ -1,0 +1,72 @@
+{
+  "id": "cosmic_node",
+  "group": "world",
+  "label": "Вселенная / Галактика / Система / Планета / Луна / Измерение",
+  "icon": "🌌",
+  "color": "#5b6fd6",
+  "description": "Верхние уровни иерархии мира. Один узел покрывает все космические/надмирные масштабы — тип узла определяет, какие секции имеют смысл.",
+  "save_path": "res://game_data/world/cosmic_node/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID узла", "type": "id", "default": "world_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "node_type", "label": "Тип узла", "type": "enum",
+      "options": ["universe", "galaxy", "star_system", "planet", "moon",
+        "space_region", "other_dimension", "custom..."]},
+    {"key": "parent", "label": "Родитель (ID)", "type": "reference", "default": ""},
+    {"key": "description", "label": "Краткое описание", "type": "text", "default": ""},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "physical_properties",
+      "toggle_label": "🪐 Физические свойства",
+      "default_on": true,
+      "fields": [
+        {"key": "radius_km", "label": "Радиус/размер (км)", "type": "float", "default": 0},
+        {"key": "gravity", "label": "Гравитация (g)", "type": "float", "default": 1.0, "step": 0.01},
+        {"key": "atmosphere", "label": "Атмосфера", "type": "enum",
+          "options": ["none", "thin", "breathable", "toxic", "corrosive", "unknown"]},
+        {"key": "star_type", "label": "Тип звезды (для star_system)", "type": "string", "default": ""},
+        {"key": "orbital_period_days", "label": "Орбитальный период (дней)", "type": "float", "default": 0},
+        {"key": "day_length_hours", "label": "Длина суток (часов)", "type": "float", "default": 24}
+      ]
+    },
+    {
+      "key": "habitability",
+      "toggle_label": "🧬 Обитаемость",
+      "default_on": false,
+      "fields": [
+        {"key": "habitable", "label": "Пригодно для жизни", "type": "bool", "default": false},
+        {"key": "population_estimate", "label": "Оценка населения", "type": "float", "default": 0},
+        {"key": "dominant_species", "label": "Доминирующие виды", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "access",
+      "toggle_label": "🚀 Доступ / открытие",
+      "default_on": false,
+      "fields": [
+        {"key": "access_method", "label": "Способ достижения", "type": "enum",
+          "options": ["ftl_travel", "portal", "spaceship", "magic_teleport", "walking", "unreachable"]},
+        {"key": "discovered", "label": "Открыто игроком", "type": "bool", "default": false},
+        {"key": "danger_level", "label": "Уровень опасности", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "dimension_rules",
+      "toggle_label": "🌀 Законы измерения (для other_dimension)",
+      "default_on": false,
+      "fields": [
+        {"key": "physics_altered", "label": "Физика изменена", "type": "bool", "default": true},
+        {"key": "time_flow_ratio", "label": "Соотношение течения времени", "type": "float", "default": 1.0},
+        {"key": "rules_description", "label": "Описание правил", "type": "text", "default": ""}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "accessory_artifact",
+  "group": "equipment",
+  "id": "artifact_psi_amplifier",
+  "name": "Артефакт Псионного Усиления",
+  "subtype": "artifact",
+  "equipment_slot": "artifact_slot",
+  "rarity": "7_legendary",
+  "quality": "masterwork",
+  "value": 5000,
+  "weight": 0.3,
+  "unique": true,
+  "tags": ["artifact", "psionic"],
+  "power": {
+    "enabled": true,
+    "abilities": [
+      {
+        "verb": "increases",
+        "target": "physical_damage",
+        "scope": "self",
+        "modifier_type": "formula",
+        "value": "",
+        "formula": "15 + 0.1 * PLAYER_LEVEL",
+        "condition": "none",
+        "note": "Усиливает весь физический урон на 15% + 0.1% за уровень героя"
+      }
+    ]
+  }
+}

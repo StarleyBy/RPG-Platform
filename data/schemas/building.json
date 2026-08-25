@@ -1,0 +1,75 @@
+{
+  "id": "building",
+  "group": "world",
+  "label": "Здание",
+  "icon": "🏛️",
+  "color": "#a17a3d",
+  "save_path": "res://game_data/world/building/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "building_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "building_type", "label": "Тип", "type": "enum",
+      "options": ["house", "shop", "tavern", "temple", "castle_keep", "tower",
+        "warehouse", "laboratory", "spaceship_interior", "custom..."]},
+    {"key": "parent", "label": "Родитель (район/поселение, ID)", "type": "reference", "default": ""},
+    {"key": "coord_x", "label": "Координата X", "type": "float", "default": 0},
+    {"key": "coord_y", "label": "Координата Y", "type": "float", "default": 0},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "structure",
+      "toggle_label": "🏗️ Структура",
+      "default_on": true,
+      "fields": [
+        {"key": "floor_count", "label": "Кол-во этажей", "type": "int", "default": 1, "min": 1},
+        {"key": "has_basement", "label": "Есть подвал", "type": "bool", "default": false},
+        {"key": "material", "label": "Материал постройки", "type": "string", "default": "stone"}
+      ]
+    },
+    {
+      "key": "floors",
+      "toggle_label": "🪜 Этажи и комнаты",
+      "default_on": false,
+      "note": "Каждая строка = этаж: verb=floor_name, target=room_id_list в поле note.",
+      "fields": [{"key": "floor_layout", "label": "Разбивка по этажам", "type": "ability_list"}]
+    },
+    {
+      "key": "access",
+      "toggle_label": "🚪 Доступ",
+      "default_on": true,
+      "fields": [
+        {"key": "doors", "label": "Двери", "type": "ability_list"},
+        {"key": "window_count", "label": "Кол-во окон", "type": "int", "default": 0},
+        {"key": "locked", "label": "Заперто", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "inhabitants",
+      "toggle_label": "🧑 Обитатели и контейнеры",
+      "default_on": false,
+      "fields": [
+        {"key": "npcs", "label": "NPC (ID)", "type": "tags", "default": []},
+        {"key": "containers", "label": "Контейнеры (сундуки, шкафы)", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "secrets",
+      "toggle_label": "🔍 Секреты",
+      "default_on": false,
+      "fields": [{"key": "secret_rooms", "label": "Секретные комнаты (ID)", "type": "tags", "default": []}]
+    },
+    {
+      "key": "state",
+      "toggle_label": "🏳️ Состояние",
+      "default_on": false,
+      "fields": [{"key": "state", "label": "Состояние", "type": "enum", "options_ref": "location_states"}]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

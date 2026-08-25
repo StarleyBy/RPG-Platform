@@ -1,0 +1,59 @@
+{
+  "id": "enemy_flyer",
+  "group": "enemy",
+  "label": "Летающее существо",
+  "icon": "🦅",
+  "color": "#4db8d6",
+  "save_path": "res://game_data/enemies/flyer/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID существа", "type": "id", "default": "flyer_new_01"},
+    {"key": "name", "label": "Имя", "type": "string", "default": ""},
+    {"key": "species", "label": "Вид", "type": "string", "default": "griffin"},
+    {"key": "rank", "label": "Ранг", "type": "enum",
+      "options": ["normal", "elite", "mini_boss", "boss", "raid_boss"]},
+    {"key": "level", "label": "Уровень", "type": "int", "default": 5},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["flying"]}
+  ],
+  "sections": [
+    {
+      "key": "core_stats",
+      "toggle_label": "❤️ Основные характеристики",
+      "default_on": true,
+      "fields": [
+        {"key": "max_hp", "label": "Здоровье", "type": "float", "default": 300},
+        {"key": "armor", "label": "Броня", "type": "float", "default": 10},
+        {"key": "attack_damage", "label": "Урон атаки", "type": "float", "default": 25}
+      ]
+    },
+    {
+      "key": "flight",
+      "toggle_label": "🪽 Полёт",
+      "default_on": true,
+      "fields": [
+        {"key": "flight_speed", "label": "Скорость полёта", "type": "float", "default": 300},
+        {"key": "flight_altitude_min", "label": "Мин. высота полёта", "type": "float", "default": 5},
+        {"key": "flight_altitude_max", "label": "Макс. высота полёта", "type": "float", "default": 100},
+        {"key": "can_land", "label": "Может приземляться", "type": "bool", "default": true},
+        {"key": "dive_attack", "label": "Пикирующая атака", "type": "bool", "default": true},
+        {"key": "grounded_by", "label": "Что сбивает наземь (эффекты)", "type": "tags", "default": ["stun", "net"]}
+      ]
+    },
+    {
+      "key": "abilities",
+      "toggle_label": "⚔️ Способности",
+      "default_on": true,
+      "fields": [
+        {"key": "ability_list", "label": "Способности (когти, ветер, крик...)", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "loot",
+      "toggle_label": "💰 Добыча",
+      "default_on": true,
+      "fields": [
+        {"key": "loot_table", "label": "Таблица добычи", "type": "ability_list"},
+        {"key": "experience_reward", "label": "Опыт", "type": "float", "default": 40}
+      ]
+    }
+  ]
+}

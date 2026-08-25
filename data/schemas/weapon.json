@@ -1,0 +1,435 @@
+{
+  "id": "weapon",
+  "group": "equipment",
+  "label": "Оружие",
+  "icon": "⚔️",
+  "color": "#3d6bb3",
+  "description": "Любое оружие ближнего/дальнего боя, посохи, огнестрел, футуристичное оружие.",
+  "save_path": "res://game_data/items/weapon/%s.json",
+  "base_fields": [
+    {
+      "key": "id",
+      "label": "ID предмета",
+      "type": "id",
+      "default": "weapon_new_01"
+    },
+    {
+      "key": "name",
+      "label": "Название",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "key": "subtype",
+      "label": "Подтип",
+      "type": "enum",
+      "default_index": 0,
+      "options_ref": "weapon_subtypes"
+    },
+    {
+      "key": "rarity",
+      "label": "Редкость",
+      "type": "enum",
+      "options_ref": "rarity_tiers",
+      "default_index": 5
+    },
+    {
+      "key": "quality",
+      "label": "Качество",
+      "type": "enum",
+      "options_ref": "quality_tiers",
+      "default_index": 3
+    },
+    {
+      "key": "equipment_slot",
+      "label": "Слот",
+      "type": "enum",
+      "options": [
+        "main_hand",
+        "off_hand",
+        "both_hands",
+        "ranged_slot",
+        "none"
+      ]
+    },
+    {
+      "key": "material",
+      "label": "Материал",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "key": "value",
+      "label": "Цена (золото)",
+      "type": "float",
+      "default": 100,
+      "min": 0
+    },
+    {
+      "key": "weight",
+      "label": "Вес",
+      "type": "float",
+      "default": 2.0,
+      "min": 0
+    },
+    {
+      "key": "durability_max",
+      "label": "Прочность",
+      "type": "int",
+      "default": 100,
+      "min": 0
+    },
+    {
+      "key": "item_power",
+      "label": "Item Power / iLvl",
+      "type": "int",
+      "default": 1,
+      "min": 0
+    },
+    {
+      "key": "set_id",
+      "label": "ID сета (если есть)",
+      "type": "reference",
+      "default": ""
+    },
+    {
+      "key": "tags",
+      "label": "Теги",
+      "type": "tags",
+      "default": [
+        "weapon"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "key": "weapon_damage",
+      "toggle_label": "⚡ Урон по стихиям",
+      "default_on": true,
+      "note": "Мин/Макс урона для каждого типа. Нулевой диапазон = оружие не наносит этот тип урона.",
+      "fields": [
+        {
+          "key": "physical",
+          "label": "Физический",
+          "type": "range",
+          "default": [
+            5,
+            10
+          ]
+        },
+        {
+          "key": "fire",
+          "label": "Огонь",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "ice",
+          "label": "Холод",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "lightning",
+          "label": "Молния",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "poison",
+          "label": "Яд",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "holy",
+          "label": "Свет",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "shadow",
+          "label": "Тьма",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "void",
+          "label": "Пустота",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "psionic",
+          "label": "Пси-урон",
+          "type": "range",
+          "default": [
+            0,
+            0
+          ]
+        },
+        {
+          "key": "attack_speed",
+          "label": "Скорость атаки",
+          "type": "float",
+          "default": 1.0,
+          "step": 0.05
+        },
+        {
+          "key": "crit_chance",
+          "label": "Шанс крита (%)",
+          "type": "float",
+          "default": 5.0
+        },
+        {
+          "key": "crit_multiplier",
+          "label": "Множ. крита (x)",
+          "type": "float",
+          "default": 1.5,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "key": "on_hit_effects",
+      "toggle_label": "🧪 Эффекты при попадании / особые способности",
+      "default_on": false,
+      "note": "Бесконечный список: вампиризм, кража монет, поджог, оглушение, призыв существа, и т.д.",
+      "fields": [
+        {
+          "key": "effects",
+          "label": "Список эффектов",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "sockets",
+      "toggle_label": "💎 Сокеты (камни и руны)",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "socket_count",
+          "label": "Кол-во сокетов",
+          "type": "int",
+          "default": 0,
+          "min": 0,
+          "max": 8
+        },
+        {
+          "key": "socket_types",
+          "label": "Разрешённые типы",
+          "type": "tags",
+          "default": [
+            "gem",
+            "rune"
+          ]
+        },
+        {
+          "key": "socket_order_matters",
+          "label": "Порядок камней важен",
+          "type": "bool",
+          "default": false
+        }
+      ]
+    },
+    {
+      "key": "affixes",
+      "toggle_label": "📜 Аффиксы / динамические формулы усиления",
+      "default_on": false,
+      "note": "Пример: 'Усиливает физический урон на 15% + 0.1% за уровень героя'.",
+      "fields": [
+        {
+          "key": "affixes",
+          "label": "Аффиксы",
+          "type": "ability_list"
+        },
+        {
+          "key": "custom_formula",
+          "label": "Доп. формула (опционально)",
+          "type": "formula"
+        }
+      ]
+    },
+    {
+      "key": "set_bonus",
+      "toggle_label": "🔗 Сет-предмет",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "set_bonuses",
+          "label": "Бонусы сета",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "ammo",
+      "toggle_label": "🔫 Боеприпасы (для дальнобойного/огнестрельного/энерг. оружия)",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "ammo_type",
+          "label": "Тип боеприпаса",
+          "type": "string",
+          "default": "arrow"
+        },
+        {
+          "key": "magazine_size",
+          "label": "Размер магазина",
+          "type": "int",
+          "default": 1,
+          "min": 0
+        },
+        {
+          "key": "reload_time",
+          "label": "Время перезарядки (сек)",
+          "type": "float",
+          "default": 1.5
+        }
+      ]
+    },
+    {
+      "key": "tech_modes",
+      "toggle_label": "🛠️ Технологичное / модульное оружие (режимы, трансформация)",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "modes",
+          "label": "Режимы стрельбы/работы",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "power_source",
+          "label": "Источник энергии",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "key": "overheat_enabled",
+          "label": "Перегрев",
+          "type": "bool",
+          "default": false
+        }
+      ]
+    },
+    {
+      "key": "condition_state",
+      "toggle_label": "🌒 Условные / проклятые / повреждённые состояния",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "cursed",
+          "label": "Проклято",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "corrupted",
+          "label": "Осквернено",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "day_night_restriction",
+          "label": "Ограничение день/ночь",
+          "type": "enum",
+          "options": [
+            "none",
+            "day_only",
+            "night_only"
+          ]
+        },
+        {
+          "key": "conditional_effects",
+          "label": "Условные эффекты",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "restrictions",
+      "toggle_label": "🚫 Ограничения по классу/расе/фракции",
+      "default_on": false,
+      "fields": [
+        {
+          "type": "manifest_multiref",
+          "ref_type": "character_class",
+          "key": "class_restrictions",
+          "label": "Классы"
+        },
+        {
+          "type": "vocab_multiselect",
+          "options_ref": "creature_species",
+          "key": "race_restrictions",
+          "label": "Расы/виды"
+        },
+        {
+          "type": "vocab_multiselect",
+          "options_ref": "velara_factions",
+          "key": "faction_restrictions",
+          "label": "Фракции"
+        },
+        {
+          "key": "soulbound",
+          "label": "Привязка к душе (Soulbound)",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "required_level",
+          "label": "Требуемый уровень",
+          "type": "int",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор / описание / уникальность",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "lore_text",
+          "label": "Текст лора",
+          "type": "text",
+          "default": ""
+        },
+        {
+          "key": "unique",
+          "label": "Уникальный предмет (1 экземпляр в мире)",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "named_owner",
+          "label": "Именной владелец (легендарные)",
+          "type": "string",
+          "default": ""
+        }
+      ]
+    }
+  ]
+}

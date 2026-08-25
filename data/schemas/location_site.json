@@ -1,0 +1,95 @@
+{
+  "id": "location_site",
+  "group": "world",
+  "label": "Локация / Достопримечательность (POI)",
+  "icon": "📍",
+  "color": "#3dc9d6",
+  "description": "Универсальная точка интереса вне зданий: руины, святилища, обломки корабля, статуи, порталы и т.д.",
+  "save_path": "res://game_data/world/location_site/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "site_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "site_type", "label": "Тип", "type": "enum",
+      "options": ["landmark", "ruin", "shrine", "statue", "grave", "shipwreck",
+        "crash_site", "camp", "portal_site", "natural_wonder", "cave_entrance", "custom..."]},
+    {"key": "parent", "label": "Родитель (регион/район, ID)", "type": "reference", "default": ""},
+    {"key": "coord_x", "label": "Координата X", "type": "float", "default": 0},
+    {"key": "coord_y", "label": "Координата Y", "type": "float", "default": 0},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "description_section",
+      "toggle_label": "📝 Описание",
+      "default_on": true,
+      "fields": [
+        {"key": "terrain", "label": "Рельеф", "type": "enum", "options_ref": "terrain_types"},
+        {"key": "biome", "label": "Биом", "type": "enum", "options_ref": "biome_types"},
+        {"key": "size_width", "label": "Размер (ширина)", "type": "float", "default": 20},
+        {"key": "size_height", "label": "Размер (высота)", "type": "float", "default": 20}
+      ]
+    },
+    {
+      "key": "state",
+      "toggle_label": "🏳️ Состояние",
+      "default_on": true,
+      "fields": [
+        {"key": "state", "label": "Текущее состояние", "type": "enum", "options_ref": "location_states"}
+      ]
+    },
+    {
+      "key": "interactivity",
+      "toggle_label": "🖐️ Взаимодействие",
+      "default_on": false,
+      "fields": [
+        {"key": "interactions", "label": "Доступные действия", "type": "tags",
+          "default": ["inspect"]},
+        {"key": "interaction_notes", "label": "Заметки", "type": "text", "default": ""}
+      ]
+    },
+    {
+      "key": "inhabitants",
+      "toggle_label": "👥 Обитатели и ресурсы",
+      "default_on": false,
+      "fields": [
+        {"key": "npcs", "label": "NPC (ID)", "type": "tags", "default": []},
+        {"key": "enemies", "label": "Враги (ID)", "type": "tags", "default": []},
+        {"key": "resources", "label": "Ресурсы (ID)", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "quests_events",
+      "toggle_label": "❗ Квесты и события",
+      "default_on": false,
+      "fields": [
+        {"key": "related_quests", "label": "Связанные квесты (ID)", "type": "tags", "default": []},
+        {"key": "events", "label": "События", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "secrets",
+      "toggle_label": "🔍 Секреты",
+      "default_on": false,
+      "fields": [
+        {"key": "secret_rooms", "label": "Секретные зоны", "type": "tags", "default": []},
+        {"key": "hidden_paths", "label": "Скрытые пути", "type": "tags", "default": []},
+        {"key": "reveal_requirements", "label": "Условия обнаружения", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "fast_travel",
+      "toggle_label": "🧭 Быстрое перемещение",
+      "default_on": false,
+      "fields": [
+        {"key": "fast_travel_enabled", "label": "Доступно", "type": "bool", "default": false},
+        {"key": "fast_travel_cost", "label": "Стоимость", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

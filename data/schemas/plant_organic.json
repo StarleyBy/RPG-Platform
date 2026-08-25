@@ -1,0 +1,91 @@
+{
+  "id": "plant_organic",
+  "group": "resource",
+  "label": "Растения, Травы, Ингредиенты",
+  "icon": "🌿",
+  "color": "#4a9e5c",
+  "description": "Пример: 'Лист крапивы' с алхимическими эффектами.",
+  "save_path": "res://game_data/items/plant/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "plant_nettle_leaf"},
+    {"key": "name", "label": "Название", "type": "string", "default": "Лист крапивы"},
+    {"key": "species", "label": "Вид растения", "type": "enum", "options_ref": "velara_flora",
+      "allow_custom": true, "default": "nettle"},
+    {"key": "harvested_part", "label": "Собираемая часть", "type": "enum",
+      "options": ["root", "stem", "bark", "leaf", "flower", "petal", "fruit", "berry",
+        "seed", "sap", "resin", "pollen", "spore", "bulb", "tuber", "thorn", "whole_plant"]},
+    {"key": "growth_stage", "label": "Стадия роста при сборе", "type": "enum",
+      "options": ["seed", "sprout", "young", "mature", "flowering", "fruiting", "withered", "dead"]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 1},
+    {"key": "quality", "label": "Качество", "type": "enum", "options_ref": "quality_tiers", "default_index": 1},
+    {"key": "value", "label": "Цена", "type": "float", "default": 3, "min": 0},
+    {"key": "weight", "label": "Вес", "type": "float", "default": 0.05},
+    {"key": "max_stack", "label": "Макс. стак", "type": "int", "default": 50},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["plant", "herb"]}
+  ],
+  "sections": [
+    {
+      "key": "properties",
+      "toggle_label": "🌱 Свойства",
+      "default_on": true,
+      "fields": [
+        {"key": "poisonous", "label": "Ядовито", "type": "bool", "default": false},
+        {"key": "medicinal", "label": "Лекарственное", "type": "bool", "default": false},
+        {"key": "magical", "label": "Магическое", "type": "bool", "default": false},
+        {"key": "edible", "label": "Съедобно", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "effects",
+      "toggle_label": "🧪 Алхимические / лечебные эффекты",
+      "default_on": true,
+      "note": "Что даёт при употреблении/использовании в алхимии — бесконечный список.",
+      "fields": [
+        {"key": "effects_list", "label": "Эффекты", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "harvesting",
+      "toggle_label": "✂️ Сбор урожая и регенерация",
+      "default_on": false,
+      "fields": [
+        {"key": "regrowth_enabled", "label": "Отрастает заново", "type": "bool", "default": true},
+        {"key": "regrowth_hours", "label": "Время отрастания (часы)", "type": "float", "default": 72},
+        {"key": "harvest_yield_min", "label": "Мин. кол-во за сбор", "type": "int", "default": 1},
+        {"key": "harvest_yield_max", "label": "Макс. кол-во за сбор", "type": "int", "default": 3},
+        {"key": "required_skill", "label": "Требуемый навык", "type": "string", "default": "herbalism"}
+      ]
+    },
+    {
+      "key": "environment",
+      "toggle_label": "🌦️ Условия появления (биом/сезон/погода/время суток)",
+      "default_on": false,
+      "fields": [
+        {"key": "biomes", "label": "Биомы", "type": "tags",
+          "default": ["forest"]},
+        {"key": "seasons", "label": "Сезоны", "type": "tags", "default": ["spring", "summer"]},
+        {"key": "weather_requirements", "label": "Требуемая погода", "type": "tags", "default": []},
+        {"key": "time_from", "label": "Время суток от", "type": "string", "default": ""},
+        {"key": "time_to", "label": "Время суток до", "type": "string", "default": ""}
+      ]
+    },
+    {
+      "key": "decay",
+      "toggle_label": "🥀 Порча / увядание",
+      "default_on": false,
+      "fields": [
+        {"key": "decay_hours", "label": "Часов до порчи", "type": "float", "default": 0},
+        {"key": "decay_result", "label": "Результат порчи (ID предмета)", "type": "reference", "default": ""}
+      ]
+    },
+    {
+      "key": "uses",
+      "toggle_label": "🧭 Применения",
+      "default_on": true,
+      "fields": [
+        {"key": "possible_uses", "label": "Применения", "type": "tags",
+          "default": ["alchemy", "cooking"]}
+      ]
+    }
+  ]
+}

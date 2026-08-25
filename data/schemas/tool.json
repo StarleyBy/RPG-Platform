@@ -1,0 +1,52 @@
+{
+  "id": "tool",
+  "group": "equipment",
+  "label": "Инструменты",
+  "icon": "🔨",
+  "color": "#8a8f3d",
+  "save_path": "res://game_data/items/tool/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "tool_pickaxe_iron"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "tool_type", "label": "Тип инструмента", "type": "enum",
+      "options": ["pickaxe", "axe", "fishing_rod", "hoe", "sickle", "hammer",
+        "lockpick", "scanner", "welder", "medkit_tool", "multitool", "custom..."]},
+    {"key": "profession", "label": "Профессия", "type": "enum",
+      "options": ["mining", "herbalism", "fishing", "hunting", "skinning",
+        "woodcutting", "alchemy", "cooking", "blacksmithing", "leatherworking",
+        "enchanting", "engineering", "science", "lockpicking"]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 2},
+    {"key": "quality", "label": "Качество", "type": "enum", "options_ref": "quality_tiers", "default_index": 2},
+    {"key": "value", "label": "Цена", "type": "float", "default": 60},
+    {"key": "durability_max", "label": "Прочность", "type": "int", "default": 100},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["tool"]}
+  ],
+  "sections": [
+    {
+      "key": "efficiency",
+      "toggle_label": "⚙️ Эффективность",
+      "default_on": true,
+      "fields": [
+        {"key": "gather_speed_bonus", "label": "Бонус скорости добычи (%)", "type": "float", "default": 0},
+        {"key": "yield_bonus", "label": "Бонус выхода ресурсов (%)", "type": "float", "default": 0},
+        {"key": "rare_find_bonus", "label": "Бонус на редкую находку (%)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "special_abilities",
+      "toggle_label": "✨ Особые способности инструмента",
+      "default_on": false,
+      "fields": [
+        {"key": "abilities", "label": "Способности", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "requirements",
+      "toggle_label": "📋 Требования",
+      "default_on": false,
+      "fields": [
+        {"key": "required_skill_level", "label": "Требуемый уровень навыка", "type": "int", "default": 0}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+[
+  "flat", "percent", "percent_of_base", "per_character_level",
+  "per_missing_health_percent", "per_current_stat", "per_stack",
+  "per_nearby_enemy", "per_second", "per_hit", "conditional", "formula",
+  "random_range", "diminishing", "one_time", "custom..."
+]

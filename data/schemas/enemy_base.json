@@ -1,0 +1,153 @@
+{
+  "id": "enemy_base",
+  "group": "enemy",
+  "label": "Существо / Враг (базовый)",
+  "icon": "👹",
+  "color": "#d64d4d",
+  "description": "Универсальный шаблон для рядовых существ любой расы/вида.",
+  "save_path": "res://game_data/enemies/base/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID существа", "type": "id", "default": "enemy_new_01"},
+    {"key": "name", "label": "Имя", "type": "string", "default": ""},
+    {"key": "species_group", "label": "Группа видов", "type": "enum",
+      "options": ["undead", "humanoid", "beast", "draconic", "elemental",
+        "construct_mechanical", "aquatic", "flying", "plant", "insectoid",
+        "celestial", "infernal", "eldritch_void", "alien_scifi", "reptilian",
+        "primordial_titan", "historical_human", "scifi_human", "custom..."]},
+    {"key": "species", "label": "Конкретный вид", "type": "enum", "options_ref": "creature_species",
+      "allow_custom": true, "default": "skeleton"},
+    {"key": "rank", "label": "Ранг", "type": "enum",
+      "options": ["trash", "normal", "elite", "mini_boss", "boss", "raid_boss", "world_boss"]},
+    {"key": "level", "label": "Уровень", "type": "int", "default": 1, "min": 1},
+    {"key": "faction", "label": "Фракция", "type": "string", "default": ""},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "core_stats",
+      "toggle_label": "❤️ Основные характеристики",
+      "default_on": true,
+      "fields": [
+        {"key": "max_hp", "label": "Здоровье", "type": "float", "default": 100, "min": 0},
+        {"key": "max_mana", "label": "Мана/Энергия", "type": "float", "default": 0},
+        {"key": "armor", "label": "Броня", "type": "float", "default": 0},
+        {"key": "magic_resist", "label": "Магическое сопротивление", "type": "float", "default": 0},
+        {"key": "move_speed", "label": "Скорость передвижения", "type": "float", "default": 100},
+        {"key": "attack_damage", "label": "Урон атаки", "type": "float", "default": 10},
+        {"key": "attack_speed", "label": "Скорость атаки", "type": "float", "default": 1.0}
+      ]
+    },
+    {
+      "key": "resistances",
+      "toggle_label": "🛡️ Сопротивления и уязвимости стихиям",
+      "default_on": false,
+      "note": "Отрицательное значение = уязвимость, положительное = сопротивление (доля 0-1 или %).",
+      "fields": [
+        {"key": "fire", "label": "Огонь", "type": "float", "default": 0, "step": 0.05},
+        {"key": "ice", "label": "Холод", "type": "float", "default": 0, "step": 0.05},
+        {"key": "lightning", "label": "Молния", "type": "float", "default": 0, "step": 0.05},
+        {"key": "poison", "label": "Яд", "type": "float", "default": 0, "step": 0.05},
+        {"key": "holy", "label": "Свет", "type": "float", "default": 0, "step": 0.05},
+        {"key": "shadow", "label": "Тьма", "type": "float", "default": 0, "step": 0.05},
+        {"key": "void", "label": "Пустота", "type": "float", "default": 0, "step": 0.05},
+        {"key": "physical", "label": "Физический", "type": "float", "default": 0, "step": 0.05},
+        {"key": "immunities", "label": "Полные иммунитеты (стихии/CC)", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "abilities",
+      "toggle_label": "⚔️ Способности (атакующие, пассивные, ауры)",
+      "default_on": true,
+      "fields": [
+        {"key": "ability_list", "label": "Способности", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "status_effects_applied",
+      "toggle_label": "☠️ Статус-эффекты, накладываемые атаками",
+      "default_on": false,
+      "fields": [
+        {"key": "on_hit_status_effects", "label": "Эффекты", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "ai_behaviour",
+      "toggle_label": "🧠 ИИ / поведение",
+      "default_on": true,
+      "fields": [
+        {"key": "behaviour_type", "label": "Тип поведения", "type": "enum",
+          "options": ["passive", "defensive", "aggressive", "territorial",
+            "ambush", "pack_hunter", "ranged_kiter", "caster_support", "fleeing_coward"]},
+        {"key": "aggro_radius", "label": "Радиус агро", "type": "float", "default": 15},
+        {"key": "target_priority", "label": "Приоритет цели", "type": "enum",
+          "options": ["closest", "lowest_hp", "highest_threat", "healer_first", "random"]},
+        {"key": "flees_below_hp_percent", "label": "Бежит при HP ниже (%)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "senses",
+      "toggle_label": "👁️ Восприятие",
+      "default_on": false,
+      "fields": [
+        {"key": "sight_range", "label": "Дальность зрения", "type": "float", "default": 20},
+        {"key": "hearing_range", "label": "Дальность слуха", "type": "float", "default": 15},
+        {"key": "sees_invisible", "label": "Видит невидимых", "type": "bool", "default": false},
+        {"key": "blind", "label": "Слеп (ориентируется по звуку/запаху)", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "movement_model",
+      "toggle_label": "🏃 Модель передвижения",
+      "default_on": false,
+      "fields": [
+        {"key": "movement_type", "label": "Тип", "type": "enum",
+          "options": ["walking", "swimming", "burrowing", "climbing", "hovering",
+            "teleporting", "rooted_stationary", "amphibious"]},
+        {"key": "can_swim", "label": "Умеет плавать", "type": "bool", "default": false},
+        {"key": "can_climb", "label": "Умеет карабкаться", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "loot",
+      "toggle_label": "💰 Добыча / опыт",
+      "default_on": true,
+      "fields": [
+        {"key": "experience_reward", "label": "Опыт за убийство", "type": "float", "default": 10},
+        {"key": "gold_min", "label": "Золото (мин)", "type": "float", "default": 0},
+        {"key": "gold_max", "label": "Золото (макс)", "type": "float", "default": 0},
+        {"key": "loot_table", "label": "Таблица добычи (ID предметов)", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "group_mechanics",
+      "toggle_label": "👥 Групповое / стайное поведение",
+      "default_on": false,
+      "fields": [
+        {"key": "pack_size_min", "label": "Мин. размер стаи", "type": "int", "default": 1},
+        {"key": "pack_size_max", "label": "Макс. размер стаи", "type": "int", "default": 1},
+        {"key": "pack_bonus_effects", "label": "Бонусы стаи", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "spawn_rules",
+      "toggle_label": "🌍 Правила появления в мире",
+      "default_on": false,
+      "fields": [
+        {"key": "biomes", "label": "Биомы", "type": "tags", "default": []},
+        {"key": "time_of_day", "label": "Время суток", "type": "enum",
+          "options": ["any", "day_only", "night_only", "dusk_dawn"]},
+        {"key": "spawn_chance", "label": "Базовый шанс спавна", "type": "float", "default": 1.0}
+      ]
+    },
+    {
+      "key": "narrative",
+      "toggle_label": "📖 Лор / квесты / диалоги",
+      "default_on": false,
+      "fields": [
+        {"key": "lore_text", "label": "Лор", "type": "text", "default": ""},
+        {"key": "related_quest_ids", "label": "Связанные квесты", "type": "tags", "default": []},
+        {"key": "unique_named", "label": "Уникальный именной противник", "type": "bool", "default": false}
+      ]
+    }
+  ]
+}

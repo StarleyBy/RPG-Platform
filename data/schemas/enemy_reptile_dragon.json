@@ -1,0 +1,86 @@
+{
+  "id": "enemy_reptile_dragon",
+  "group": "enemy",
+  "label": "Ящер / Дракон",
+  "icon": "🐉",
+  "color": "#d67a3d",
+  "save_path": "res://game_data/enemies/reptile/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID существа", "type": "id", "default": "dragon_new_01"},
+    {"key": "name", "label": "Имя", "type": "string", "default": ""},
+    {"key": "species", "label": "Вид", "type": "string", "default": "dragon"},
+    {"key": "rank", "label": "Ранг", "type": "enum",
+      "options": ["normal", "elite", "mini_boss", "boss", "raid_boss"]},
+    {"key": "level", "label": "Уровень", "type": "int", "default": 15},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["reptile"]}
+  ],
+  "sections": [
+    {
+      "key": "core_stats",
+      "toggle_label": "❤️ Основные характеристики",
+      "default_on": true,
+      "fields": [
+        {"key": "max_hp", "label": "Здоровье", "type": "float", "default": 2000},
+        {"key": "armor", "label": "Чешуйчатая броня", "type": "float", "default": 60},
+        {"key": "bite_damage", "label": "Урон укуса", "type": "float", "default": 80},
+        {"key": "claw_damage", "label": "Урон когтей", "type": "float", "default": 50},
+        {"key": "tail_swipe_damage", "label": "Урон удара хвостом", "type": "float", "default": 60}
+      ]
+    },
+    {
+      "key": "breath_weapon",
+      "toggle_label": "🔥 Дыхательная атака",
+      "default_on": true,
+      "fields": [
+        {"key": "breath_element", "label": "Стихия дыхания", "type": "enum", "options_ref": "damage_types"},
+        {"key": "breath_damage", "label": "Урон дыхания", "type": "float", "default": 150},
+        {"key": "breath_cone_angle", "label": "Угол конуса (градусы)", "type": "float", "default": 60},
+        {"key": "breath_cooldown", "label": "Кулдаун (сек)", "type": "float", "default": 15}
+      ]
+    },
+    {
+      "key": "cold_blooded",
+      "toggle_label": "🌡️ Хладнокровность",
+      "default_on": false,
+      "fields": [
+        {"key": "slowed_in_cold", "label": "Замедляется на холоде", "type": "bool", "default": true},
+        {"key": "hibernates_below_temp", "label": "Впадает в спячку ниже температуры (°C)", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "molting",
+      "toggle_label": "🐍 Линька",
+      "default_on": false,
+      "fields": [
+        {"key": "sheds_skin", "label": "Сбрасывает шкуру", "type": "bool", "default": false},
+        {"key": "shed_item_id", "label": "Предмет после линьки (ID)", "type": "reference", "default": ""}
+      ]
+    },
+    {
+      "key": "flight",
+      "toggle_label": "🪽 Полёт (для летающих драконов/виверн)",
+      "default_on": false,
+      "fields": [
+        {"key": "flight_speed", "label": "Скорость полёта", "type": "float", "default": 0},
+        {"key": "dive_attack", "label": "Пикирующая атака", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "abilities",
+      "toggle_label": "⚔️ Дополнительные способности",
+      "default_on": true,
+      "fields": [
+        {"key": "ability_list", "label": "Способности", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "loot",
+      "toggle_label": "💰 Добыча (чешуя, зубы, железы, кровь)",
+      "default_on": true,
+      "fields": [
+        {"key": "loot_table", "label": "Таблица добычи", "type": "ability_list"},
+        {"key": "experience_reward", "label": "Опыт", "type": "float", "default": 1200}
+      ]
+    }
+  ]
+}

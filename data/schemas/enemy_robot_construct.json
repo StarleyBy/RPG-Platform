@@ -1,0 +1,69 @@
+{
+  "id": "enemy_robot_construct",
+  "group": "enemy",
+  "label": "Робот / Конструкт",
+  "icon": "🤖",
+  "color": "#8f8f8f",
+  "save_path": "res://game_data/enemies/robot/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID существа", "type": "id", "default": "robot_new_01"},
+    {"key": "name", "label": "Имя", "type": "string", "default": ""},
+    {"key": "construct_type", "label": "Тип конструкта", "type": "enum",
+      "options": ["golem", "robot", "drone", "android", "turret", "mech",
+        "automaton", "ai_core_unit", "custom..."]},
+    {"key": "rank", "label": "Ранг", "type": "enum",
+      "options": ["normal", "elite", "mini_boss", "boss", "raid_boss"]},
+    {"key": "level", "label": "Уровень", "type": "int", "default": 5},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["construct", "mechanical"]}
+  ],
+  "sections": [
+    {
+      "key": "core_stats",
+      "toggle_label": "❤️ Основные характеристики",
+      "default_on": true,
+      "fields": [
+        {"key": "max_hp", "label": "Прочность (HP)", "type": "float", "default": 500},
+        {"key": "armor", "label": "Броня", "type": "float", "default": 40},
+        {"key": "emp_vulnerability", "label": "Уязвимость к EMP (%)", "type": "float", "default": 100},
+        {"key": "poison_immune", "label": "Иммунитет к яду/болезням", "type": "bool", "default": true},
+        {"key": "bleed_immune", "label": "Иммунитет к кровотечению", "type": "bool", "default": true}
+      ]
+    },
+    {
+      "key": "power_core",
+      "toggle_label": "🔋 Энергетическое ядро",
+      "default_on": true,
+      "fields": [
+        {"key": "power_source", "label": "Источник энергии", "type": "string", "default": "fusion_cell"},
+        {"key": "core_exposed", "label": "Ядро — уязвимая точка", "type": "bool", "default": false},
+        {"key": "core_destroy_effect", "label": "Эффект при уничтожении ядра", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "modules",
+      "toggle_label": "🛠️ Боевые модули",
+      "default_on": true,
+      "fields": [
+        {"key": "installed_modules", "label": "Установленные модули (лазер/щит/бур...)", "type": "tags", "default": []},
+        {"key": "module_abilities", "label": "Способности модулей", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "repair_self",
+      "toggle_label": "🔧 Самопочинка",
+      "default_on": false,
+      "fields": [
+        {"key": "self_repair_rate", "label": "Скорость самопочинки (HP/сек)", "type": "float", "default": 0},
+        {"key": "requires_repair_drone", "label": "Требует ремонтного дрона поблизости", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "loot",
+      "toggle_label": "💰 Добыча (детали, чипы)",
+      "default_on": true,
+      "fields": [
+        {"key": "loot_table", "label": "Таблица добычи", "type": "ability_list"}
+      ]
+    }
+  ]
+}

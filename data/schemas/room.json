@@ -1,0 +1,58 @@
+{
+  "id": "room",
+  "group": "world",
+  "label": "Комната",
+  "icon": "🚪",
+  "color": "#d63d6f",
+  "description": "Наименьшая единица пространства — комната здания или подземелья.",
+  "save_path": "res://game_data/world/room/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "room_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "purpose", "label": "Роль комнаты", "type": "enum",
+      "options": ["entrance", "combat", "puzzle", "treasure", "shop", "boss",
+        "rest", "story", "ambush", "trap", "secret", "transition", "custom..."]},
+    {"key": "parent", "label": "Родитель (здание/подземелье, ID)", "type": "reference", "default": ""},
+    {"key": "size_width", "label": "Размер (ширина)", "type": "float", "default": 12},
+    {"key": "size_height", "label": "Размер (высота)", "type": "float", "default": 8},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "contents",
+      "toggle_label": "📦 Содержимое",
+      "default_on": true,
+      "fields": [
+        {"key": "encounters", "label": "Встречи", "type": "ability_list"},
+        {"key": "loot", "label": "Добыча", "type": "ability_list"},
+        {"key": "traps", "label": "Ловушки", "type": "ability_list"},
+        {"key": "puzzles", "label": "Головоломки", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "exits_section",
+      "toggle_label": "🚪 Выходы",
+      "default_on": true,
+      "fields": [
+        {"key": "exits", "label": "Выходы (направление:ID_комнаты)", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "lighting_audio",
+      "toggle_label": "💡 Освещение и звук",
+      "default_on": false,
+      "fields": [
+        {"key": "lighting", "label": "Освещение", "type": "enum",
+          "options": ["sun", "moon", "torch", "fire", "magic_light", "neon", "emergency_light", "darkness"]},
+        {"key": "ambient_sound", "label": "Фоновый звук", "type": "string", "default": ""},
+        {"key": "music", "label": "Музыка", "type": "string", "default": ""}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Заметки",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

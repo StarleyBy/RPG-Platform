@@ -1,0 +1,8 @@
+[
+  "none", "on_hit", "on_crit", "on_kill", "on_block", "on_dodge", "on_equip",
+  "on_use", "on_consume", "on_combine", "on_socket", "on_low_health_below_30",
+  "on_full_health", "on_low_mana", "on_first_strike_in_combat",
+  "night_time", "day_time", "full_moon", "new_moon", "underwater", "in_combat",
+  "out_of_combat", "while_stealthed", "while_flying", "target_is_boss",
+  "target_is_undead", "target_is_elemental", "vs_specific_race", "custom..."
+]

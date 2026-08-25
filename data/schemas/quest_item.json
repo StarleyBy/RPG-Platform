@@ -1,0 +1,35 @@
+{
+  "id": "quest_item",
+  "group": "misc",
+  "label": "Квестовые предметы",
+  "icon": "❗",
+  "color": "#d6c73d",
+  "save_path": "res://game_data/items/quest/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "quest_item_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "quest_id", "label": "ID связанного квеста", "type": "reference", "default": ""},
+    {"key": "value", "label": "Цена (обычно 0, не продаётся)", "type": "float", "default": 0},
+    {"key": "droppable", "label": "Можно выбросить", "type": "bool", "default": false},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["quest_item"]}
+  ],
+  "sections": [
+    {
+      "key": "transformation_chain",
+      "toggle_label": "🔄 Цепочка трансформации по ходу квеста",
+      "default_on": false,
+      "note": "Пример: Обломок древнего меча -> [Квест A] -> Восстановленный обломок -> [Квест B] -> Целый меч.",
+      "fields": [
+        {"key": "stages", "label": "Стадии (ID следующего предмета)", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Описание",
+      "default_on": true,
+      "fields": [
+        {"key": "description", "label": "Описание", "type": "text", "default": ""}
+      ]
+    }
+  ]
+}

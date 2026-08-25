@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<style>
+  body { font-family: Arial, sans-serif; font-size: 13px; padding: 4px 12px; }
+  label { display:block; margin-top: 12px; font-weight: bold; color:#333; }
+  input, select { width: 100%; padding: 6px; margin-top: 4px; box-sizing: border-box; }
+  .hint { font-size: 11px; color: #777; margin-top: 3px; }
+  .row { margin-bottom: 6px; }
+  button { margin-top: 18px; padding: 8px 16px; background:#1a73e8; color:#fff; border:none; border-radius:4px; cursor:pointer; }
+  button:hover { background:#1558b0; }
+  #status { margin-top: 10px; font-size: 12px; color: green; }
+  fieldset { margin-top: 14px; border: 1px solid #ddd; border-radius: 6px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <label>Источник схем/словарей</label>
+    <select id="sourceMode">
+      <option value="drive">📁 Google Диск (надёжно, работает всегда)</option>
+      <option value="github">🐙 GitHub (нужен публичный репозиторий)</option>
+    </select>
+  </div>
+
+  <fieldset id="driveFields">
+    <legend>Google Диск</legend>
+    <div class="row">
+      <label>ID папки с data/schemas</label>
+      <input id="driveSchemaFolderId" placeholder="1AbC...">
+      <div class="hint">Из ссылки на папку: drive.google.com/drive/folders/<b>ЭТА_ЧАСТЬ</b></div>
+    </div>
+    <div class="row">
+      <label>ID папки с data/vocab</label>
+      <input id="driveVocabFolderId" placeholder="1XyZ...">
+    </div>
+    <div class="row">
+      <label>ID папки вывода (сюда лягут game_data/**)</label>
+      <input id="driveOutputRootFolderId" placeholder="1QwE...">
+    </div>
+  </fieldset>
+
+  <fieldset id="githubFields" style="display:none">
+    <legend>GitHub</legend>
+    <div class="row"><label>Владелец</label><input id="githubOwner" placeholder="StarleyBy"></div>
+    <div class="row"><label>Репозиторий</label><input id="githubRepo" placeholder="RPG_Platform_Core"></div>
+    <div class="row"><label>Ветка</label><input id="githubBranch" placeholder="main"></div>
+    <div class="hint">Файлы вывода при этом режиме всё равно пишутся на Google Диск — укажи папку вывода выше.</div>
+  </fieldset>
+
+  <button onclick="save()">Сохранить</button>
+  <div id="status"></div>
+
+<script>
+  function toggleFields() {
+    var mode = document.getElementById('sourceMode').value;
+    document.getElementById('driveFields').style.display = 'block';
+    document.getElementById('githubFields').style.display = (mode === 'github') ? 'block' : 'none';
+  }
+  document.getElementById('sourceMode').addEventListener('change', toggleFields);
+
+  google.script.run.withSuccessHandler(function(cfg) {
+    document.getElementById('sourceMode').value = cfg.sourceMode;
+    document.getElementById('driveSchemaFolderId').value = cfg.driveSchemaFolderId;
+    document.getElementById('driveVocabFolderId').value = cfg.driveVocabFolderId;
+    document.getElementById('driveOutputRootFolderId').value = cfg.driveOutputRootFolderId;
+    document.getElementById('githubOwner').value = cfg.githubOwner;
+    document.getElementById('githubRepo').value = cfg.githubRepo;
+    document.getElementById('githubBranch').value = cfg.githubBranch;
+    toggleFields();
+  }).ui_getConfig();
+
+  function save() {
+    var cfg = {
+      sourceMode: document.getElementById('sourceMode').value,
+      driveSchemaFolderId: document.getElementById('driveSchemaFolderId').value.trim(),
+      driveVocabFolderId: document.getElementById('driveVocabFolderId').value.trim(),
+      driveOutputRootFolderId: document.getElementById('driveOutputRootFolderId').value.trim(),
+      githubOwner: document.getElementById('githubOwner').value.trim(),
+      githubRepo: document.getElementById('githubRepo').value.trim(),
+      githubBranch: document.getElementById('githubBranch').value.trim() || 'main'
+    };
+    google.script.run.withSuccessHandler(function(msg) {
+      document.getElementById('status').textContent = '✅ ' + msg;
+    }).ui_saveConfig(cfg);
+  }
+</script>
+</body>
+</html>

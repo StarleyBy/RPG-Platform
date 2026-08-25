@@ -1,0 +1,251 @@
+{
+  "id": "continent_region_biome",
+  "group": "world",
+  "label": "Континент / Регион / Биом",
+  "icon": "🗺️",
+  "color": "#4a9e7a",
+  "description": "Географический масштаб между планетой и городом. Может представлять континент, регион или отдельную биом-зону.",
+  "save_path": "res://game_data/world/region/%s.json",
+  "base_fields": [
+    {
+      "key": "id",
+      "label": "ID",
+      "type": "id",
+      "default": "region_new_01"
+    },
+    {
+      "key": "name",
+      "label": "Название",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "key": "scale_type",
+      "label": "Масштаб",
+      "type": "enum",
+      "options": [
+        "continent",
+        "region",
+        "biome_zone",
+        "ocean"
+      ]
+    },
+    {
+      "key": "parent",
+      "label": "Родитель (ID)",
+      "type": "reference",
+      "default": ""
+    },
+    {
+      "key": "coord_x",
+      "label": "Координата X (центр)",
+      "type": "float",
+      "default": 0
+    },
+    {
+      "key": "coord_y",
+      "label": "Координата Y (центр)",
+      "type": "float",
+      "default": 0
+    },
+    {
+      "key": "tags",
+      "label": "Теги",
+      "type": "tags",
+      "default": []
+    }
+  ],
+  "sections": [
+    {
+      "key": "geography",
+      "toggle_label": "⛰️ География",
+      "default_on": true,
+      "fields": [
+        {
+          "key": "area_km2",
+          "label": "Площадь (км²)",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "terrain_dominant",
+          "label": "Доминирующий рельеф",
+          "type": "enum",
+          "options_ref": "terrain_types"
+        },
+        {
+          "key": "elevation_avg",
+          "label": "Средняя высота (м)",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "coastline",
+          "label": "Есть побережье",
+          "type": "bool",
+          "default": false
+        }
+      ]
+    },
+    {
+      "key": "climate",
+      "toggle_label": "🌦️ Климат",
+      "default_on": true,
+      "fields": [
+        {
+          "key": "temperature_avg",
+          "label": "Средняя температура (°C)",
+          "type": "float",
+          "default": 15
+        },
+        {
+          "key": "humidity",
+          "label": "Влажность (0-1)",
+          "type": "float",
+          "default": 0.5,
+          "step": 0.01
+        },
+        {
+          "key": "rainfall_mm",
+          "label": "Осадки (мм/год)",
+          "type": "float",
+          "default": 600
+        },
+        {
+          "key": "seasonal_variation",
+          "label": "Сезонная вариация (0-1)",
+          "type": "float",
+          "default": 0.3,
+          "step": 0.01
+        },
+        {
+          "key": "climate_type",
+          "label": "Тип климата",
+          "type": "enum",
+          "options": [
+            "tropical",
+            "arid",
+            "temperate",
+            "continental",
+            "polar",
+            "alien"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "biome",
+      "toggle_label": "🌿 Биом",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "biome_type",
+          "label": "Тип биома",
+          "type": "enum",
+          "options_ref": "biome_types"
+        },
+        {
+          "key": "flora_tags",
+          "label": "Флора",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "fauna_tags",
+          "label": "Фауна",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "resource_tags",
+          "label": "Доступные ресурсы",
+          "type": "tags",
+          "default": []
+        }
+      ]
+    },
+    {
+      "key": "hydrology",
+      "toggle_label": "🌊 Гидрология",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "rivers",
+          "label": "Реки",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "lakes",
+          "label": "Озёра",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "ocean_adjacent",
+          "label": "Граничит с океаном",
+          "type": "bool",
+          "default": false
+        }
+      ]
+    },
+    {
+      "key": "population_political",
+      "toggle_label": "👑 Население и политика",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "population",
+          "label": "Население",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "dominant_faction",
+          "label": "Доминирующая фракция",
+          "type": "enum",
+          "options_ref": "velara_factions",
+          "allow_custom": true,
+          "default": ""
+        },
+        {
+          "type": "vocab_multiselect",
+          "options_ref": "velara_factions",
+          "key": "factions_present",
+          "label": "Присутствующие фракции"
+        }
+      ]
+    },
+    {
+      "key": "hazards",
+      "toggle_label": "⚠️ Опасности и зоны встреч",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "natural_hazards",
+          "label": "Природные опасности",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "encounter_zones",
+          "label": "Зоны встреч",
+          "type": "ability_list"
+        }
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [
+        {
+          "key": "lore_text",
+          "label": "Текст",
+          "type": "text",
+          "default": ""
+        }
+      ]
+    }
+  ]
+}

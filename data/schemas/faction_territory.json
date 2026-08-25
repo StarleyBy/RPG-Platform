@@ -1,0 +1,32 @@
+{
+  "id": "faction_territory",
+  "group": "world",
+  "label": "Территория фракции",
+  "icon": "🚩",
+  "color": "#c93dd6",
+  "save_path": "res://game_data/world/faction_territory/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "territory_new_01"},
+    {"key": "faction_id", "label": "Фракция (ID)", "type": "reference", "default": ""},
+    {"key": "territory_location_id", "label": "Территория (ID локации/региона)", "type": "reference", "default": ""}
+  ],
+  "sections": [
+    {
+      "key": "control",
+      "toggle_label": "🎌 Контроль",
+      "default_on": true,
+      "fields": [
+        {"key": "control_percent", "label": "Контроль (%)", "type": "float", "default": 100},
+        {"key": "influence_percent", "label": "Влияние (%)", "type": "float", "default": 0},
+        {"key": "presence_percent", "label": "Присутствие (%)", "type": "float", "default": 0},
+        {"key": "contested", "label": "Спорная территория", "type": "bool", "default": false}
+      ]
+    },
+    {
+      "key": "history",
+      "toggle_label": "📜 История смены власти",
+      "default_on": false,
+      "fields": [{"key": "control_changes", "label": "События смены контроля", "type": "ability_list"}]
+    }
+  ]
+}

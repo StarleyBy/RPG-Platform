@@ -1,0 +1,115 @@
+{
+  "id": "blueprint_recipe",
+  "group": "knowledge",
+  "label": "Чертежи и Рецепты",
+  "icon": "📐",
+  "color": "#3d8fd6",
+  "save_path": "res://game_data/items/blueprint/%s.json",
+  "base_fields": [
+    {
+      "key": "id",
+      "label": "ID предмета",
+      "type": "id",
+      "default": "blueprint_new_01"
+    },
+    {
+      "key": "name",
+      "label": "Название",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "key": "blueprint_type",
+      "label": "Тип",
+      "type": "enum",
+      "options": [
+        "crafting_recipe",
+        "cooking_recipe",
+        "alchemy_formula",
+        "enchant_pattern",
+        "building_schematic",
+        "tech_schematic",
+        "custom..."
+      ]
+    },
+    {
+      "key": "rarity",
+      "label": "Редкость",
+      "type": "enum",
+      "options_ref": "rarity_tiers",
+      "default_index": 3
+    },
+    {
+      "key": "value",
+      "label": "Цена",
+      "type": "float",
+      "default": 100
+    },
+    {
+      "key": "tags",
+      "label": "Теги",
+      "type": "tags",
+      "default": [
+        "blueprint"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "key": "unlock",
+      "toggle_label": "🔓 Что открывает",
+      "default_on": true,
+      "fields": [
+        {
+          "key": "unlocked_item_id",
+          "label": "ID открываемого предмета",
+          "type": "reference",
+          "default": ""
+        },
+        {
+          "key": "required_materials",
+          "label": "Требуемые материалы (ID)",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "required_skill",
+          "label": "Требуемый навык",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "key": "required_skill_level",
+          "label": "Требуемый уровень навыка",
+          "type": "int",
+          "default": 0
+        },
+        {
+          "key": "single_use",
+          "label": "Одноразовый (расходуется при изучении)",
+          "type": "bool",
+          "default": true
+        }
+      ]
+    },
+    {
+      "key": "restrictions",
+      "toggle_label": "🚫 Ограничения",
+      "default_on": false,
+      "fields": [
+        {
+          "type": "manifest_multiref",
+          "ref_type": "character_class",
+          "key": "class_restrictions",
+          "label": "Классы"
+        },
+        {
+          "type": "vocab_multiselect",
+          "options_ref": "velara_factions",
+          "key": "faction_restrictions",
+          "label": "Фракции"
+        }
+      ]
+    }
+  ]
+}

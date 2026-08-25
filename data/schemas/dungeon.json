@@ -1,0 +1,93 @@
+{
+  "id": "dungeon",
+  "group": "world",
+  "label": "Подземелье / Данж",
+  "icon": "🕯️",
+  "color": "#8f3dd6",
+  "description": "Пещеры, склепы, шахты, лаборатории, звездолёты-руины — любая закрытая процедурная зона.",
+  "save_path": "res://game_data/world/dungeon/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID", "type": "id", "default": "dungeon_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "dungeon_type", "label": "Тип", "type": "enum",
+      "options": ["cave", "crypt", "mine", "castle", "sewer", "temple", "ruins",
+        "laboratory", "spaceship", "prison", "bunker", "vault", "tower",
+        "volcano", "alien_hive", "dream_world", "custom..."]},
+    {"key": "parent", "label": "Родитель (регион, ID)", "type": "reference", "default": ""},
+    {"key": "coord_x", "label": "Координата X (вход)", "type": "float", "default": 0},
+    {"key": "coord_y", "label": "Координата Y (вход)", "type": "float", "default": 0},
+    {"key": "difficulty", "label": "Сложность (1-10)", "type": "int", "default": 3, "min": 1, "max": 10},
+    {"key": "recommended_level", "label": "Рекомендуемый уровень", "type": "int", "default": 1},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": []}
+  ],
+  "sections": [
+    {
+      "key": "generation_params",
+      "toggle_label": "🎲 Параметры генерации",
+      "default_on": true,
+      "note": "Задай параметры — процедурный генератор построит структуру этажей и комнат.",
+      "fields": [
+        {"key": "size", "label": "Размер", "type": "enum", "options": ["small", "medium", "large", "huge"]},
+        {"key": "theme", "label": "Тема", "type": "string", "default": "ancient_ruins"},
+        {"key": "floor_count", "label": "Кол-во этажей", "type": "int", "default": 1, "min": 1},
+        {"key": "boss_included", "label": "Есть босс", "type": "bool", "default": true},
+        {"key": "secret_room_percent", "label": "Доля секретных комнат (%)", "type": "float", "default": 15}
+      ]
+    },
+    {
+      "key": "flow_sequence",
+      "toggle_label": "🧩 Грамматика подземелья (последовательность)",
+      "default_on": true,
+      "note": "Порядок шагов задаёт логику генерации, а не просто случайный лабиринт. Переставляй/добавляй значения.",
+      "fields": [
+        {"key": "sequence_steps", "label": "Последовательность", "type": "tags",
+          "default": ["entrance", "exploration", "combat", "puzzle", "reward",
+            "branch", "mini_boss", "secret", "boss", "exit"]}
+      ]
+    },
+    {
+      "key": "rooms",
+      "toggle_label": "🚪 Комнаты",
+      "default_on": false,
+      "fields": [
+        {"key": "room_ids", "label": "ID комнат (см. страницу 'Комната')", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "encounters",
+      "toggle_label": "⚔️ Встречи",
+      "default_on": true,
+      "fields": [{"key": "encounter_zones", "label": "Зоны встреч", "type": "ability_list"}]
+    },
+    {
+      "key": "loot",
+      "toggle_label": "💰 Добыча",
+      "default_on": true,
+      "fields": [
+        {"key": "guaranteed_loot", "label": "Гарантированная добыча (ID)", "type": "tags", "default": []},
+        {"key": "loot_table", "label": "Таблица добычи", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "hazards",
+      "toggle_label": "🪤 Ловушки и опасности",
+      "default_on": false,
+      "fields": [
+        {"key": "traps", "label": "Ловушки", "type": "ability_list"},
+        {"key": "environmental_hazards", "label": "Опасности среды", "type": "tags", "default": []}
+      ]
+    },
+    {
+      "key": "state",
+      "toggle_label": "🏳️ Состояние",
+      "default_on": false,
+      "fields": [{"key": "state", "label": "Состояние", "type": "enum", "options_ref": "location_states"}]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

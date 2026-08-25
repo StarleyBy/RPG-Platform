@@ -1,0 +1,61 @@
+{
+  "id": "food",
+  "group": "consumable",
+  "label": "Еда и Рыба",
+  "icon": "🍽️",
+  "color": "#d69a3d",
+  "description": "Пример: 'Окунь жареный'.",
+  "save_path": "res://game_data/items/food/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "food_fried_perch"},
+    {"key": "name", "label": "Название", "type": "string", "default": "Окунь жареный"},
+    {"key": "food_type", "label": "Тип", "type": "enum",
+      "options": ["raw_fish", "cooked_fish", "raw_meat", "cooked_meat", "vegetable",
+        "fruit", "bread", "soup", "dessert", "drink", "ration", "exotic", "custom..."]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 1},
+    {"key": "value", "label": "Цена", "type": "float", "default": 5, "min": 0},
+    {"key": "max_stack", "label": "Макс. стак", "type": "int", "default": 20},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["food"]}
+  ],
+  "sections": [
+    {
+      "key": "nutrition",
+      "toggle_label": "🍖 Питательность и эффекты при съедании",
+      "default_on": true,
+      "fields": [
+        {"key": "hunger_restored", "label": "Восполняет голод", "type": "float", "default": 20},
+        {"key": "health_restored", "label": "Восполняет здоровье", "type": "float", "default": 0},
+        {"key": "buffs", "label": "Баффы от еды", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "freshness",
+      "toggle_label": "🐟 Свежесть и срок годности",
+      "default_on": true,
+      "fields": [
+        {"key": "freshness_hours", "label": "Часов до порчи", "type": "float", "default": 48},
+        {"key": "spoiled_result", "label": "Результат порчи (ID)", "type": "reference", "default": ""},
+        {"key": "preservation_method", "label": "Метод консервации", "type": "string", "default": ""}
+      ]
+    },
+    {
+      "key": "cooking",
+      "toggle_label": "🔥 Рецепт приготовления",
+      "default_on": false,
+      "fields": [
+        {"key": "raw_ingredient_id", "label": "Сырой ингредиент (ID)", "type": "reference", "default": ""},
+        {"key": "cooking_method", "label": "Способ готовки", "type": "enum",
+          "options": ["fry", "boil", "bake", "grill", "smoke", "raw"]},
+        {"key": "cooking_skill_bonus", "label": "Бонус от навыка готовки", "type": "float", "default": 0}
+      ]
+    },
+    {
+      "key": "special",
+      "toggle_label": "✨ Особые/праздничные/экзотические свойства",
+      "default_on": false,
+      "fields": [
+        {"key": "special_effects", "label": "Особые эффекты", "type": "ability_list"}
+      ]
+    }
+  ]
+}

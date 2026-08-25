@@ -1,0 +1,57 @@
+{
+  "type": "weapon",
+  "group": "equipment",
+  "id": "weapon_psi_staff_01",
+  "name": "Пси-Посох Бездны",
+  "subtype": "psi_staff",
+  "rarity": "6_epic",
+  "quality": "fine",
+  "equipment_slot": "both_hands",
+  "material": "voidsteel",
+  "value": 2500,
+  "weight": 3.0,
+  "durability_max": 300,
+  "item_power": 45,
+  "set_id": "set_psi_archon",
+  "tags": ["weapon", "psionic", "staff"],
+  "weapon_damage": {
+    "enabled": true,
+    "physical": [10, 20],
+    "ice": [15, 30],
+    "psionic": [20, 35],
+    "attack_speed": 0.9,
+    "crit_chance": 8,
+    "crit_multiplier": 1.6
+  },
+  "on_hit_effects": {
+    "enabled": true,
+    "effects": [
+      {
+        "verb": "drains",
+        "target": "mana",
+        "scope": "target",
+        "modifier_type": "percent",
+        "value": "5",
+        "formula": "",
+        "condition": "on_hit",
+        "note": "Кража маны у цели"
+      }
+    ]
+  },
+  "affixes": {
+    "enabled": true,
+    "affixes": [
+      {
+        "verb": "increases",
+        "target": "physical_damage",
+        "scope": "self",
+        "modifier_type": "formula",
+        "value": "",
+        "formula": "PHYSICAL_DAMAGE * 1.15 + 0.001 * PLAYER_LEVEL",
+        "condition": "none",
+        "note": "Динамическая формула усиления"
+      }
+    ],
+    "custom_formula": ""
+  }
+}

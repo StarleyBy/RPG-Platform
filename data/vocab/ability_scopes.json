@@ -1,0 +1,5 @@
+[
+  "self", "target", "attacker", "area_around_self", "area_around_target",
+  "party", "all_enemies_in_combat", "summoned_creature", "linked_item",
+  "entire_set_wearer", "custom..."
+]
