@@ -7,19 +7,90 @@
   "description": "Пример: 'Руна холода'. Вставляются в сокеты экипировки.",
   "save_path": "res://game_data/items/gem_rune/%s.json",
   "base_fields": [
-    {"key": "id", "label": "ID предмета", "type": "id", "default": "rune_frost_01"},
-    {"key": "name", "label": "Название", "type": "string", "default": "Руна холода"},
-    {"key": "socket_type", "label": "Тип сокета", "type": "enum",
-      "options": ["gem", "rune", "crystal_shard", "circuit_chip", "custom..."]},
-    {"key": "gem_variety", "label": "Разновидность (для камней)", "type": "enum",
-      "options": ["ruby", "sapphire", "emerald", "diamond", "amethyst", "topaz",
-        "opal", "garnet", "onyx", "moonstone", "sunstone", "obsidian",
-        "dragon_eye", "star_crystal", "void_shard", "not_applicable"]},
-    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 4},
-    {"key": "gem_tier", "label": "Тир камня/руны (1-10)", "type": "int", "default": 1, "min": 1, "max": 10},
-    {"key": "value", "label": "Цена", "type": "float", "default": 150, "min": 0},
-    {"key": "max_stack", "label": "Макс. стак", "type": "int", "default": 20},
-    {"key": "tags", "label": "Теги", "type": "tags", "default": ["gem", "socketable"]}
+    {
+      "key": "id",
+      "label": "ID предмета",
+      "type": "id",
+      "default": "rune_frost_01"
+    },
+    {
+      "key": "name",
+      "label": "Название",
+      "type": "string",
+      "default": "Руна холода"
+    },
+    {
+      "key": "socket_type",
+      "label": "Тип сокета",
+      "type": "enum",
+      "options": [
+        "gem",
+        "rune",
+        "crystal_shard",
+        "circuit_chip",
+        "custom..."
+      ]
+    },
+    {
+      "key": "gem_variety",
+      "label": "Разновидность (для камней)",
+      "type": "enum",
+      "options": [
+        "ruby",
+        "sapphire",
+        "emerald",
+        "diamond",
+        "amethyst",
+        "topaz",
+        "opal",
+        "garnet",
+        "onyx",
+        "moonstone",
+        "sunstone",
+        "obsidian",
+        "dragon_eye",
+        "star_crystal",
+        "void_shard",
+        "not_applicable"
+      ]
+    },
+    {
+      "key": "rarity",
+      "label": "Редкость",
+      "type": "enum",
+      "options_ref": "rarity_tiers",
+      "default_index": 4
+    },
+    {
+      "key": "gem_tier",
+      "label": "Тир камня/руны (1-10)",
+      "type": "int",
+      "default": 1,
+      "min": 1,
+      "max": 10
+    },
+    {
+      "key": "value",
+      "label": "Цена",
+      "type": "float",
+      "default": 150,
+      "min": 0
+    },
+    {
+      "key": "max_stack",
+      "label": "Макс. стак",
+      "type": "int",
+      "default": 20
+    },
+    {
+      "key": "tags",
+      "label": "Теги",
+      "type": "tags",
+      "default": [
+        "gem",
+        "socketable"
+      ]
+    }
   ],
   "sections": [
     {
@@ -27,7 +98,11 @@
       "toggle_label": "🔷 Бонус при вставке в сокет",
       "default_on": true,
       "fields": [
-        {"key": "bonuses", "label": "Бонусы", "type": "ability_list"}
+        {
+          "key": "bonuses",
+          "label": "Бонусы",
+          "type": "ability_list"
+        }
       ]
     },
     {
@@ -35,8 +110,17 @@
       "toggle_label": "🔗 Комбинации рун (порядок вставки даёт доп. эффект)",
       "default_on": false,
       "fields": [
-        {"key": "combo_partners", "label": "Руны-партнёры (ID)", "type": "tags", "default": []},
-        {"key": "combo_bonus", "label": "Бонус комбинации", "type": "ability_list"}
+        {
+          "key": "combo_partners",
+          "label": "Руны-партнёры (ID)",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "key": "combo_bonus",
+          "label": "Бонус комбинации",
+          "type": "ability_list"
+        }
       ]
     },
     {
@@ -44,8 +128,19 @@
       "toggle_label": "❄️ Стихийные свойства",
       "default_on": false,
       "fields": [
-        {"key": "element", "label": "Стихия", "type": "enum", "options_ref": "damage_types"},
-        {"key": "purity", "label": "Чистота камня (0-1)", "type": "float", "default": 1.0, "step": 0.01}
+        {
+          "key": "element",
+          "label": "Стихия",
+          "type": "enum",
+          "options_ref": "damage_types"
+        },
+        {
+          "key": "purity",
+          "label": "Чистота камня (0-1)",
+          "type": "float",
+          "default": 1.0,
+          "step": 0.01
+        }
       ]
     },
     {
@@ -53,8 +148,16 @@
       "toggle_label": "⚒️ Использование в крафте/зачаровании",
       "default_on": false,
       "fields": [
-        {"key": "possible_uses", "label": "Применения", "type": "tags",
-          "default": ["socket", "enchanting"]}
+        {
+          "key": "possible_uses",
+          "label": "Применения",
+          "type": "vocab_multiselect",
+          "options_ref": "item_uses",
+          "default": [
+            "socket",
+            "enchanting"
+          ]
+        }
       ]
     }
   ]

@@ -17,7 +17,8 @@
 
 // --- общий чекбокс-пикер с фильтром (для >12 вариантов) -------------------
 
-function buildCheckboxPicker(groups, initialIds) {
+function buildCheckboxPicker(groups, initialIds, opts) {
+  opts = opts || {};
   const box = el("div", { class: "multiref-box" });
   let filterInput = null;
   const totalItems = groups.reduce((n, g) => n + g.items.length, 0);
@@ -31,16 +32,35 @@ function buildCheckboxPicker(groups, initialIds) {
   let currentGroups = groups;
   const selected = new Set(initialIds || []);
 
+  // "Свои варианты" — ручное добавление значения, которого нет в словаре
+  // (см. buildVocabMultiselectField). Не теряем уже сохранённые кастомные
+  // значения при повторном открытии формы: то, что выбрано, но не найдено
+  // ни в одной группе, автоматически становится "своим вариантом".
+  const customItems = [];
+  if (opts.allowCustomAdd) {
+    const knownIds = new Set();
+    for (const g of groups) for (const it of g.items) knownIds.add(it.id);
+    for (const id of selected) {
+      if (!knownIds.has(id)) customItems.push({ id, display: ruLabel(id) });
+    }
+  }
+
+  function allGroupsForRender() {
+    if (!customItems.length) return currentGroups;
+    return [{ label: "✎ Свои варианты", items: customItems }].concat(currentGroups);
+  }
+
   function renderList(filterText) {
     listEl.innerHTML = "";
     const needle = (filterText || "").toLowerCase();
     let anyVisible = false;
-    for (const g of currentGroups) {
+    const groupsToRender = allGroupsForRender();
+    for (const g of groupsToRender) {
       const visibleItems = g.items.filter(it =>
         !needle || it.display.toLowerCase().includes(needle) || it.id.toLowerCase().includes(needle));
       if (!visibleItems.length) continue;
       anyVisible = true;
-      if (currentGroups.length > 1 && g.label) {
+      if (groupsToRender.length > 1 && g.label) {
         listEl.appendChild(el("div", { class: "multiref-group-label", text: g.label }));
       }
       for (const it of visibleItems) {
@@ -55,17 +75,32 @@ function buildCheckboxPicker(groups, initialIds) {
       }
     }
     if (!anyVisible) {
-      const totalNow = currentGroups.reduce((n, g) => n + g.items.length, 0);
+      const totalNow = groupsToRender.reduce((n, g) => n + g.items.length, 0);
       listEl.appendChild(el("div", {
         class: "multiref-empty",
         text: totalNow === 0
-          ? "Пока нет ни одного подходящего манифеста — сначала создай хотя бы один в соответствующей категории."
+          ? (opts.emptyMessage || "Пока нет ни одного подходящего манифеста — сначала создай хотя бы один в соответствующей категории.")
           : "Ничего не найдено по фильтру."
       }));
     }
   }
   renderList("");
   if (filterInput) filterInput.addEventListener("input", () => renderList(filterInput.value));
+
+  if (opts.allowCustomAdd) {
+    const addInput = el("input", { class: "multiref-filter", type: "text", placeholder: "+ добавить своё значение и нажать Enter..." });
+    addInput.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      const raw = addInput.value.trim();
+      if (!raw) return;
+      if (!customItems.some(it => it.id === raw)) customItems.push({ id: raw, display: raw });
+      selected.add(raw);
+      addInput.value = "";
+      renderList(filterInput ? filterInput.value : "");
+    });
+    box.appendChild(addInput);
+  }
 
   return {
     el: box,
@@ -78,9 +113,10 @@ function buildCheckboxPicker(groups, initialIds) {
 // --- vocab_multiselect: мультивыбор из статичного словаря ------------------
 
 function buildVocabMultiselectField(fdef, vocab, val) {
-  const options = optionsForField(fdef, vocab);
+  const options = sortByRuLabel(optionsForField(fdef, vocab));
   const items = options.map(o => ({ id: o, display: ruLabel(o) }));
-  const picker = buildCheckboxPicker([{ label: null, items }], val || fdef.default || []);
+  const picker = buildCheckboxPicker([{ label: null, items }], val || fdef.default || [],
+    { allowCustomAdd: true, emptyMessage: "В словаре пока нет вариантов." });
   const wrap = el("div", { class: "field-block", style: "grid-column:1/-1" }, [
     el("label", { text: fdef.label || fdef.key }), picker.el
   ]);

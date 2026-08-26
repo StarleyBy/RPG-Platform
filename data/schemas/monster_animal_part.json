@@ -7,20 +7,96 @@
   "description": "Пример: 'Ядовитые железы дракона'. Связаны с бестиарием.",
   "save_path": "res://game_data/items/monster_part/%s.json",
   "base_fields": [
-    {"key": "id", "label": "ID предмета", "type": "id", "default": "part_dragon_venom_gland"},
-    {"key": "name", "label": "Название", "type": "string", "default": "Ядовитые железы дракона"},
-    {"key": "part_type", "label": "Тип части", "type": "enum",
-      "options": ["hide", "leather", "fur", "scale", "bone", "horn", "tooth", "claw",
-        "feather", "wing", "shell", "carapace", "blood", "organ", "gland", "fat",
-        "meat", "eye", "heart", "brain", "venom_sac", "custom..."]},
-    {"key": "source_species", "label": "Вид-источник", "type": "enum", "options_ref": "velara_fauna",
-      "allow_custom": true, "default": "dragon"},
-    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 5},
-    {"key": "quality", "label": "Качество", "type": "enum", "options_ref": "quality_tiers", "default_index": 2},
-    {"key": "value", "label": "Цена", "type": "float", "default": 250, "min": 0},
-    {"key": "weight", "label": "Вес", "type": "float", "default": 0.5},
-    {"key": "max_stack", "label": "Макс. стак", "type": "int", "default": 20},
-    {"key": "tags", "label": "Теги", "type": "tags", "default": ["monster_part"]}
+    {
+      "key": "id",
+      "label": "ID предмета",
+      "type": "id",
+      "default": "part_dragon_venom_gland"
+    },
+    {
+      "key": "name",
+      "label": "Название",
+      "type": "string",
+      "default": "Ядовитые железы дракона"
+    },
+    {
+      "key": "part_type",
+      "label": "Тип части",
+      "type": "enum",
+      "options": [
+        "hide",
+        "leather",
+        "fur",
+        "scale",
+        "bone",
+        "horn",
+        "tooth",
+        "claw",
+        "feather",
+        "wing",
+        "shell",
+        "carapace",
+        "blood",
+        "organ",
+        "gland",
+        "fat",
+        "meat",
+        "eye",
+        "heart",
+        "brain",
+        "venom_sac",
+        "custom..."
+      ]
+    },
+    {
+      "key": "source_species",
+      "label": "Вид-источник",
+      "type": "enum",
+      "options_ref": "velara_fauna",
+      "allow_custom": true,
+      "default": "dragon"
+    },
+    {
+      "key": "rarity",
+      "label": "Редкость",
+      "type": "enum",
+      "options_ref": "rarity_tiers",
+      "default_index": 5
+    },
+    {
+      "key": "quality",
+      "label": "Качество",
+      "type": "enum",
+      "options_ref": "quality_tiers",
+      "default_index": 2
+    },
+    {
+      "key": "value",
+      "label": "Цена",
+      "type": "float",
+      "default": 250,
+      "min": 0
+    },
+    {
+      "key": "weight",
+      "label": "Вес",
+      "type": "float",
+      "default": 0.5
+    },
+    {
+      "key": "max_stack",
+      "label": "Макс. стак",
+      "type": "int",
+      "default": 20
+    },
+    {
+      "key": "tags",
+      "label": "Теги",
+      "type": "tags",
+      "default": [
+        "monster_part"
+      ]
+    }
   ],
   "sections": [
     {
@@ -28,11 +104,30 @@
       "toggle_label": "🧬 Свойства",
       "default_on": true,
       "fields": [
-        {"key": "toxicity", "label": "Токсичность", "type": "float", "default": 0},
-        {"key": "magical", "label": "Магическое", "type": "bool", "default": false},
-        {"key": "elemental_alignment", "label": "Стихийная принадлежность", "type": "enum",
-          "options_ref": "damage_types"},
-        {"key": "potency", "label": "Сила/концентрация", "type": "float", "default": 1.0}
+        {
+          "key": "toxicity",
+          "label": "Токсичность",
+          "type": "float",
+          "default": 0
+        },
+        {
+          "key": "magical",
+          "label": "Магическое",
+          "type": "bool",
+          "default": false
+        },
+        {
+          "key": "elemental_alignment",
+          "label": "Стихийная принадлежность",
+          "type": "enum",
+          "options_ref": "damage_types"
+        },
+        {
+          "key": "potency",
+          "label": "Сила/концентрация",
+          "type": "float",
+          "default": 1.0
+        }
       ]
     },
     {
@@ -40,7 +135,11 @@
       "toggle_label": "🧪 Эффекты при использовании",
       "default_on": true,
       "fields": [
-        {"key": "effects_list", "label": "Эффекты", "type": "ability_list"}
+        {
+          "key": "effects_list",
+          "label": "Эффекты",
+          "type": "ability_list"
+        }
       ]
     },
     {
@@ -48,9 +147,24 @@
       "toggle_label": "🐉 Связь с бестиарием",
       "default_on": false,
       "fields": [
-        {"key": "source_creature_id", "label": "ID существа", "type": "reference", "default": ""},
-        {"key": "drop_chance", "label": "Шанс выпадения (%)", "type": "float", "default": 10},
-        {"key": "requires_skinning", "label": "Требует разделки (Skinning)", "type": "bool", "default": true}
+        {
+          "key": "source_creature_id",
+          "label": "ID существа",
+          "type": "reference",
+          "default": ""
+        },
+        {
+          "key": "drop_chance",
+          "label": "Шанс выпадения (%)",
+          "type": "float",
+          "default": 10
+        },
+        {
+          "key": "requires_skinning",
+          "label": "Требует разделки (Skinning)",
+          "type": "bool",
+          "default": true
+        }
       ]
     },
     {
@@ -58,7 +172,12 @@
       "toggle_label": "🥩 Порча (для органики)",
       "default_on": false,
       "fields": [
-        {"key": "decay_hours", "label": "Часов до порчи", "type": "float", "default": 0}
+        {
+          "key": "decay_hours",
+          "label": "Часов до порчи",
+          "type": "float",
+          "default": 0
+        }
       ]
     },
     {
@@ -66,8 +185,17 @@
       "toggle_label": "🧭 Применения",
       "default_on": true,
       "fields": [
-        {"key": "possible_uses", "label": "Применения", "type": "tags",
-          "default": ["alchemy", "crafting", "ritual"]}
+        {
+          "key": "possible_uses",
+          "label": "Применения",
+          "type": "vocab_multiselect",
+          "options_ref": "item_uses",
+          "default": [
+            "alchemy",
+            "crafting",
+            "ritual"
+          ]
+        }
       ]
     }
   ]

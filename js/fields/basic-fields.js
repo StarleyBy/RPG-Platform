@@ -111,7 +111,9 @@ function optionsForField(fdef, vocab) {
 }
 
 function buildEnumField(fdef, vocab, val) {
-  const options = optionsForField(fdef, vocab);
+  const rawOptions = optionsForField(fdef, vocab); // до сортировки — тут ещё верны индексы default_index
+  const defaultValue = rawOptions[fdef.default_index || 0] || "";
+  const options = sortByRuLabel(rawOptions); // отображение — по алфавиту RU-перевода
 
   const select = el("select");
   for (const o of options) select.appendChild(el("option", { value: o, text: ruLabel(o) }));
@@ -125,7 +127,7 @@ function buildEnumField(fdef, vocab, val) {
     });
   }
 
-  const initial = val ?? (options[fdef.default_index || 0] || "");
+  const initial = val ?? defaultValue;
   if (options.includes(initial)) {
     select.value = initial;
   } else if (fdef.allow_custom) {

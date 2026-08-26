@@ -4,16 +4,13 @@
   "label": "Растения, Травы, Ингредиенты",
   "icon": "🌿",
   "color": "#4a9e5c",
-  "description": "Пример: 'Лист крапивы' с алхимическими эффектами.",
+  "description": "Конкретный собираемый предмет (лист, корень, цветок...) от вида растения — сам вид описывается отдельным манифестом на странице 'Вид растения'.",
   "save_path": "res://game_data/items/plant/%s.json",
   "base_fields": [
-    {"key": "id", "label": "ID предмета", "type": "id", "default": "plant_nettle_leaf"},
-    {"key": "name", "label": "Название", "type": "string", "default": "Лист крапивы"},
-    {"key": "species", "label": "Вид растения", "type": "enum", "options_ref": "velara_flora",
-      "allow_custom": true, "default": "nettle"},
-    {"key": "harvested_part", "label": "Собираемая часть", "type": "enum",
-      "options": ["root", "stem", "bark", "leaf", "flower", "petal", "fruit", "berry",
-        "seed", "sap", "resin", "pollen", "spore", "bulb", "tuber", "thorn", "whole_plant"]},
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "plant_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "species", "label": "Вид растения", "type": "manifest_ref", "ref_type": "plant_species"},
+    {"key": "harvested_part", "label": "Собираемая часть", "type": "enum", "options_ref": "plant_parts"},
     {"key": "growth_stage", "label": "Стадия роста при сборе", "type": "enum",
       "options": ["seed", "sprout", "young", "mature", "flowering", "fruiting", "withered", "dead"]},
     {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 1},
@@ -21,7 +18,7 @@
     {"key": "value", "label": "Цена", "type": "float", "default": 3, "min": 0},
     {"key": "weight", "label": "Вес", "type": "float", "default": 0.05},
     {"key": "max_stack", "label": "Макс. стак", "type": "int", "default": 50},
-    {"key": "tags", "label": "Теги", "type": "tags", "default": ["plant", "herb"]}
+    {"key": "tags", "label": "Теги", "type": "vocab_multiselect", "options_ref": "plant_tags", "default": ["plant", "herb"]}
   ],
   "sections": [
     {
@@ -39,7 +36,7 @@
       "key": "effects",
       "toggle_label": "🧪 Алхимические / лечебные эффекты",
       "default_on": true,
-      "note": "Что даёт при употреблении/использовании в алхимии — бесконечный список.",
+      "note": "Что даёт при употреблении/использовании в алхимии — бесконечный список. 'Здоровье'/HP есть в списке целей эффекта — он называется 'health', ищи по алфавиту (список теперь отсортирован).",
       "fields": [
         {"key": "effects_list", "label": "Эффекты", "type": "ability_list"}
       ]
@@ -53,7 +50,7 @@
         {"key": "regrowth_hours", "label": "Время отрастания (часы)", "type": "float", "default": 72},
         {"key": "harvest_yield_min", "label": "Мин. кол-во за сбор", "type": "int", "default": 1},
         {"key": "harvest_yield_max", "label": "Макс. кол-во за сбор", "type": "int", "default": 3},
-        {"key": "required_skill", "label": "Требуемый навык", "type": "string", "default": "herbalism"}
+        {"key": "required_skill", "label": "Требуемая профессия", "type": "manifest_ref", "ref_type": "profession"}
       ]
     },
     {
@@ -61,10 +58,9 @@
       "toggle_label": "🌦️ Условия появления (биом/сезон/погода/время суток)",
       "default_on": false,
       "fields": [
-        {"key": "biomes", "label": "Биомы", "type": "tags",
-          "default": ["forest"]},
-        {"key": "seasons", "label": "Сезоны", "type": "tags", "default": ["spring", "summer"]},
-        {"key": "weather_requirements", "label": "Требуемая погода", "type": "tags", "default": []},
+        {"key": "biomes", "label": "Биомы", "type": "vocab_multiselect", "options_ref": "biome_types"},
+        {"key": "seasons", "label": "Сезоны (Шесть Времён Велары)", "type": "vocab_multiselect", "options_ref": "velara_seasons"},
+        {"key": "weather_requirements", "label": "Требуемая погода", "type": "vocab_multiselect", "options_ref": "weather_types"},
         {"key": "time_from", "label": "Время суток от", "type": "string", "default": ""},
         {"key": "time_to", "label": "Время суток до", "type": "string", "default": ""}
       ]
@@ -83,8 +79,7 @@
       "toggle_label": "🧭 Применения",
       "default_on": true,
       "fields": [
-        {"key": "possible_uses", "label": "Применения", "type": "tags",
-          "default": ["alchemy", "cooking"]}
+        {"key": "possible_uses", "label": "Применения", "type": "vocab_multiselect", "options_ref": "item_uses", "default": ["alchemy", "cooking"]}
       ]
     }
   ]

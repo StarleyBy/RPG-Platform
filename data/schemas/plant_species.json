@@ -1,0 +1,34 @@
+{
+  "id": "plant_species",
+  "group": "core",
+  "label": "Вид растения (таксономия)",
+  "icon": "🌱",
+  "color": "#4a9e5c",
+  "description": "Каталог видов растений — 'Лунный тростник', 'Кровоцвет' и т.д. Добавить новый вид растения = создать здесь новый манифест, он тут же появится для выбора в поле 'Вид' у страницы 'Растения, Травы, Ингредиенты' (там ссылка manifest_ref на эту схему).",
+  "save_path": "res://game_data/core/plant_species/%s.json",
+  "base_fields": [
+    {"key": "id", "label": "ID вида", "type": "id", "default": "plant_species_new_01"},
+    {"key": "name", "label": "Название", "type": "string", "default": ""},
+    {"key": "plant_family", "label": "Тип растения", "type": "enum",
+      "options": ["tree", "shrub", "herb", "vine", "grass", "fungus", "moss", "aquatic_plant", "custom..."]},
+    {"key": "description", "label": "Описание", "type": "text", "default": ""}
+  ],
+  "sections": [
+    {
+      "key": "growth",
+      "toggle_label": "🌍 Условия произрастания",
+      "default_on": true,
+      "fields": [
+        {"key": "native_biomes", "label": "Естественные биомы", "type": "vocab_multiselect", "options_ref": "biome_types"},
+        {"key": "native_seasons", "label": "Сезон роста/цветения", "type": "vocab_multiselect", "options_ref": "velara_seasons"},
+        {"key": "harvestable_parts", "label": "Собираемые части", "type": "vocab_multiselect", "options_ref": "plant_parts"}
+      ]
+    },
+    {
+      "key": "lore",
+      "toggle_label": "📖 Лор",
+      "default_on": false,
+      "fields": [{"key": "lore_text", "label": "Текст", "type": "text", "default": ""}]
+    }
+  ]
+}

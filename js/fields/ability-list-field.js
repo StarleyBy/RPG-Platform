@@ -5,7 +5,7 @@
  */
 function comboWithCustom(options) {
   const select = el("select");
-  for (const o of options.filter(x => x !== CUSTOM_MARK)) {
+  for (const o of sortByRuLabel(options.filter(x => x !== CUSTOM_MARK))) {
     select.appendChild(el("option", { value: o, text: ruLabel(o) }));
   }
   select.appendChild(el("option", { value: CUSTOM_MARK, text: "— свой вариант —" }));

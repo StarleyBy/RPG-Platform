@@ -182,3 +182,17 @@ table.data-table tr:hover td{ background:var(--panel); cursor:pointer; }
   border-radius:6px; padding:8px 12px; margin-bottom:6px; font-size:12.5px; cursor:pointer; }
 .dash-issue-row:hover{ border-color:#ff6b52; }
 .dash-ok-banner{ background:var(--panel); border:1px solid var(--ok); border-radius:6px; padding:12px; color:var(--ok); font-size:13px; }
+
+/* --- requirement rows (внутри level_track) --- */
+.requirement-list{ display:flex; flex-direction:column; gap:6px; margin-top:6px; }
+.requirement-row{ background:var(--panel); border:1px solid var(--border); border-radius:5px; padding:8px; }
+.requirement-row-head{ display:flex; gap:8px; align-items:center; margin-bottom:6px; flex-wrap:wrap; }
+.requirement-row-head select{ font-size:12px; padding:5px 6px; }
+.requirement-row-head input[type=number]{ width:80px; font-size:12px; padding:5px 6px; }
+.requirement-row-head .rm{ margin-left:auto; padding:4px 8px; font-size:11px; }
+.requirement-row-note input{ width:100%; font-size:12px; }
+.add-requirement-btn{ margin-top:4px; font-size:12px; padding:5px 10px; }
+.level-row-requirements-label{ font-size:11px; color:var(--text-dim); margin-top:10px; margin-bottom:2px; display:block; }
+.level-row-xp{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.level-row-xp label{ font-size:11px; color:var(--text-dim); }
+.level-row-xp input{ width:100px; }
