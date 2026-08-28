@@ -12,5 +12,6 @@
   "carry_weight", "jump_height", "fall_damage_reduction", "underwater_breathing",
   "night_vision", "summon_creature", "new_ability_slot", "coin_steal_percent",
   "vampirism_percent", "durability_loss_rate", "aggro_radius", "threat_generation",
-  "custom..."
+  "deposit_detection_range", "gathering_yield_bonus", "rare_material_chance",
+  "gathering_speed", "crafting_critical_chance", "custom..."
 ]

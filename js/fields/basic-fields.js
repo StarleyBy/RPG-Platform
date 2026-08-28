@@ -5,11 +5,14 @@
  * английское машинное значение. allow_custom=true добавляет пункт
  * "— свой вариант —" со свободным полем.
  *
- * Поля manifest_ref/manifest_multiref/vocab_multiselect/level_track
- * вынесены в js/fields/reference-fields.js — они устроены принципиально
- * иначе (тянут варианты не из статичного словаря, а из живого состояния
- * STATE.manifestIndex).
+ * Поля manifest_ref/manifest_multiref/vocab_multiselect/level_track/
+ * tier_scale вынесены в js/fields/reference-fields.js,
+ * js/fields/level-track-field.js и js/fields/tier-scale-field.js — они
+ * устроены принципиально иначе (тянут варианты не из статичного словаря,
+ * а из живого состояния STATE.manifestIndex, либо это составные
+ * повторяемые структуры).
  */
+
 const CUSTOM_MARK = "custom...";
 
 function buildField(fdef, vocab, initialValue) {
@@ -30,6 +33,7 @@ function buildField(fdef, vocab, initialValue) {
     case "manifest_ref": return buildManifestRefField(fdef, initialValue);
     case "manifest_multiref": return buildManifestMultirefField(fdef, initialValue, false);
     case "level_track": return buildLevelTrackField(fdef, initialValue);
+    case "tier_scale": return buildTierScaleField(fdef, initialValue);
     default: return buildStringField(fdef, initialValue);
   }
 }
@@ -158,12 +162,10 @@ function buildFormulaField(fdef, val) {
     type: "text", value: val ?? fdef.default ?? "",
     placeholder: "PHYSICAL_DAMAGE * 1.15 + 0.001 * PLAYER_LEVEL"
   });
-  const hint = el("div", { class: "hint", text: "Переменные: PLAYER_LEVEL, ITEM_LEVEL, BASE_VALUE, TARGET_MAX_HP, STAT_*" });
+  const hint = el("div", {
+    class: "hint",
+    text: "Переменные: PLAYER_LEVEL, ITEM_LEVEL, BASE_VALUE, TARGET_MAX_HP, STAT_*, PROFESSION_LEVEL (уровень профессии — см. поле 'Масштабирование от уровня профессии' у способности, если формула его использует)"
+  });
   const wrap = el("div", { class: "field-block" }, [el("label", { text: fdef.label || fdef.key }), input, hint]);
   return { wrapEl: wrap, get: () => input.value, set: v => input.value = v ?? "" };
 }
-
-/* --- ability_list: бесконечный конструктор способностей.
-   Выпадающие списки показывают русский перевод глагола/цели/области/
-   модификатора/условия, но get() всегда возвращает английский токен. --- */
-

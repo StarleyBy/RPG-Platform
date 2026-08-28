@@ -11,10 +11,7 @@
     {"key": "tool_type", "label": "Тип инструмента", "type": "enum",
       "options": ["pickaxe", "axe", "fishing_rod", "hoe", "sickle", "hammer",
         "lockpick", "scanner", "welder", "medkit_tool", "multitool", "custom..."]},
-    {"key": "profession", "label": "Профессия", "type": "enum",
-      "options": ["mining", "herbalism", "fishing", "hunting", "skinning",
-        "woodcutting", "alchemy", "cooking", "blacksmithing", "leatherworking",
-        "enchanting", "engineering", "science", "lockpicking"]},
+    {"key": "profession", "label": "Профессия", "type": "manifest_ref", "ref_type": "profession"},
     {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 2},
     {"key": "quality", "label": "Качество", "type": "enum", "options_ref": "quality_tiers", "default_index": 2},
     {"key": "value", "label": "Цена", "type": "float", "default": 60},
@@ -37,7 +34,7 @@
       "toggle_label": "✨ Особые способности инструмента",
       "default_on": false,
       "fields": [
-        {"key": "abilities", "label": "Способности", "type": "ability_list"}
+        {"key": "abilities", "label": "Способности", "type": "manifest_multiref", "ref_type": "ability"}
       ]
     },
     {

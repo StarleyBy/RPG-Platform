@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <div id="fileWarning">
   ⚠️ Страница открыта напрямую из файла (file://). Локальный режим и запросы к GitHub API в таком контексте браузер обычно блокирует.
   Запусти локальный сервер (например <code>python -m http.server</code> в этой папке) или открой через GitHub Pages.
@@ -61,7 +60,7 @@
       <label>Владелец / организация</label>
       <input id="ghOwner" type="text" placeholder="StarleyBy">
       <label>Репозиторий</label>
-      <input id="ghRepo" type="text" placeholder="RPG_Platform_Core">
+      <input id="ghRepo" type="text" placeholder="RPG-Platform">
       <label>Ветка</label>
       <input id="ghBranch" type="text" placeholder="main" value="main">
       <label>Токен доступа (нужен только для сохранения/удаления)</label>
@@ -77,12 +76,12 @@
   </div>
 </div>
 
-
 <!-- Порядок подключения важен: классические скрипты (не ES-модули) делят
      одно глобальное пространство имён, каждый следующий файл использует
      то, что объявили предыдущие. Требует http(s)/localhost, не file://
-     (см. #fileWarning выше) — так же, как было в монолитной версии. -->
+     (см. #fileWarning выше). -->
 <script src="js/ru-dict.js"></script>
+<script src="js/ru-dict-additions.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/adapters.js"></script>
 <script src="js/bootstrap.js"></script>
@@ -90,6 +89,7 @@
 <script src="js/fields/ability-list-field.js"></script>
 <script src="js/fields/reference-fields.js"></script>
 <script src="js/fields/level-track-field.js"></script>
+<script src="js/fields/tier-scale-field.js"></script>
 <script src="js/pages/database-page.js"></script>
 <script src="js/pages/editor-page.js"></script>
 <script src="js/pages/dashboard-page.js"></script>
