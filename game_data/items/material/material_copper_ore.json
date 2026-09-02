@@ -1,0 +1,9 @@
+{
+  "type": "material_raw", "group": "resource",
+  "id": "material_copper_ore", "name": "Медная руда",
+  "category": "metal", "subtype": "copper", "processing_stage": "raw",
+  "rarity": "1_broken", "quality": "normal", "value": 3, "weight": 1.8, "max_stack": 100,
+  "tags": ["material", "crafting"],
+  "ore_data": {"enabled": true, "metal": "copper", "purity": 0.65, "smelting_yield": 0.6, "smelting_temperature": 1085},
+  "uses": {"enabled": true, "possible_uses": ["crafting", "blacksmithing", "trade"]}
+}

@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_somnus_ivy", "name": "Сноцвет-плющ",
+  "plant_family": "shrub",
+  "description": "Вьющийся подземный кустарник из глубин Низ-Арры, выделяющий сонные испарения при прикосновении. Используется для создания усыпляющих ядов.",
+  "growth": {"enabled": true, "native_biomes": ["underdark_caves", "underdark_forest"], "native_seasons": ["eld", "arwen"],
+    "harvestable_parts": ["soporific_leaf", "vine"]},
+  "lore": {"enabled": false}
+}

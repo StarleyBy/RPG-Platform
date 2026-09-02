@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_bloodflower", "name": "Кровоцвет",
+  "plant_family": "herb",
+  "description": "Ярко-алый цветок, сок которого используется в алхимии.",
+  "growth": {"enabled": true, "native_biomes": ["grassland", "forest"], "native_seasons": ["solvar", "merid"],
+    "harvestable_parts": ["flower", "petal", "sap"]},
+  "lore": {"enabled": false}
+}

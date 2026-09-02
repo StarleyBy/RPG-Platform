@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_rehliant_moss", "name": "Рехлитный лазурник",
+  "plant_family": "moss",
+  "description": "Тонкий стелющийся ярко-синий мох, накапливающий магическую энергию на рехлитовых жилах.",
+  "growth": {"enabled": true, "native_biomes": ["mountains"], "native_seasons": ["varken"],
+    "harvestable_parts": ["spores", "conductive_fiber"]},
+  "lore": {"enabled": false}
+}

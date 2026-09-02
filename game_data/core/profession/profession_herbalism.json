@@ -1,0 +1,20 @@
+{
+  "type": "profession", "group": "core",
+  "id": "profession_herbalism", "name": "Травничество",
+  "profession_category": "gathering", "max_level": 25,
+  "tier_names": ["novice", "apprentice", "expert", "master", "grandmaster"],
+  "description": "Сбор растений и трав. Именно на эту профессию теперь ссылается 'Требуемая профессия' у страницы 'Растения, Травы, Ингредиенты'.",
+  "level_progression": {
+    "enabled": true,
+    "milestones": [
+      {
+        "level": 1, "required_experience": 0, "requirements": [],
+        "unlocks_abilities": [], "unlocks_resources": [],
+        "note": "Стартовый уровень."
+      }
+    ]
+  },
+  "scaling_bonus": {"enabled": false},
+  "class_synergy": {"enabled": false},
+  "lore": {"enabled": false}
+}

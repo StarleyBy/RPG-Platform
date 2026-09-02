@@ -1,0 +1,9 @@
+{
+  "type": "material_raw", "group": "resource",
+  "id": "material_iron_ore", "name": "Железная руда",
+  "category": "metal", "subtype": "iron", "processing_stage": "raw",
+  "rarity": "2_poor", "quality": "normal", "value": 4, "weight": 2.0, "max_stack": 100,
+  "tags": ["material", "crafting"],
+  "ore_data": {"enabled": true, "metal": "iron", "purity": 0.6, "smelting_yield": 0.55, "smelting_temperature": 1538},
+  "uses": {"enabled": true, "possible_uses": ["crafting", "blacksmithing", "trade"]}
+}

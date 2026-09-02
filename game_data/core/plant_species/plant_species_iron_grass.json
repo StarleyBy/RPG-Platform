@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_iron_grass", "name": "Железная трава",
+  "plant_family": "grass",
+  "description": "Жёсткая трава с высоким содержанием минералов, режет незащищённую кожу.",
+  "growth": {"enabled": true, "native_biomes": ["mountains", "grassland"], "native_seasons": ["arven", "solvar", "merid"],
+    "harvestable_parts": ["whole_plant", "root"]},
+  "lore": {"enabled": false}
+}

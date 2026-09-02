@@ -1,0 +1,56 @@
+{
+	"type": "gem_rune",
+	"group": "resource",
+	"id": "rune_frost_01",
+	"name": "Руна холода",
+	"socket_type": "rune",
+	"gem_variety": "ruby",
+	"rarity": "5_rare",
+	"gem_tier": 1,
+	"value": 150,
+	"max_stack": 20,
+	"tags": [
+		"gem",
+		"socketable"
+	],
+	"socket_bonus": {
+		"enabled": true,
+		"bonuses": [
+			{
+				"verb": "increases",
+				"target": "resistance_ice",
+				"scope": "self",
+				"modifier_type": "percent_of_base",
+				"value": "30%",
+				"formula": "",
+				"condition": "in_combat",
+				"note": "для брони и щитов"
+			},
+			{
+				"verb": "increases",
+				"target": "ice_damage",
+				"scope": "attacker",
+				"modifier_type": "percent_of_base",
+				"value": "15%",
+				"formula": "",
+				"condition": "in_combat",
+				"note": "для оружия"
+			}
+		]
+	},
+	"rune_combo": {
+		"enabled": false
+	},
+	"elemental": {
+		"enabled": true,
+		"element": "ice",
+		"purity": 1
+	},
+	"crafting_use": {
+		"enabled": true,
+		"possible_uses": [
+			"socket",
+			"trade"
+		]
+	}
+}

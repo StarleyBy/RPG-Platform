@@ -1,0 +1,39 @@
+{
+	"type": "ability",
+	"group": "core",
+	"id": "ability_ore_view",
+	"name": "Обнаружение залежей",
+	"ability_type": "profession_bonus",
+	"description": "Увеличивает радиус обнаружения залежей руды",
+	"tags": [
+		"sergei"
+	],
+	"effects": {
+		"enabled": true,
+		"effects_list": [
+			{
+				"verb": "increases",
+				"target": "deposit_detection_range",
+				"scope": "area_around_self",
+				"modifier_type": "percent",
+				"value": "",
+				"formula": "",
+				"condition": "out_of_combat",
+				"note": ""
+			}
+		]
+	},
+	"profession_scaling": {
+		"enabled": true,
+		"scales_with_profession": "profession_mining"
+	},
+	"requirements": {
+		"enabled": false
+	},
+	"cost": {
+		"enabled": false
+	},
+	"lore": {
+		"enabled": false
+	}
+}

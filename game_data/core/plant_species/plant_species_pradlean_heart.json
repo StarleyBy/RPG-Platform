@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_pradlean_heart", "name": "Сердце прадла",
+  "plant_family": "shrub",
+  "description": "Болотный кустарник с массивным, богатым крахмалом клубнем. Традиционный, питательный и очень сытный источник пищи для племен прадлов.",
+  "growth": {"enabled": true, "native_biomes": ["swamp"], "native_seasons": ["solvar", "merid"],
+    "harvestable_parts": ["heart_tuber", "bitter_shoot"]},
+  "lore": {"enabled": false}
+}

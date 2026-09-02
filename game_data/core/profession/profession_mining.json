@@ -1,0 +1,141 @@
+{
+	"type": "profession",
+	"group": "core",
+	"id": "profession_mining",
+	"name": "Шахтёр",
+	"profession_category": "gathering",
+	"max_level": 25,
+	"description": "Добыча руды и минералов. Рабочий пример структуры прогрессии — level_track с требованиями и открытиями.",
+	"tier_scale": {
+		"enabled": true,
+		"tiers": [
+			{
+				"tier_name": "новичок",
+				"from_level": 1,
+				"to_level": 5,
+				"grade_labels": [
+					"",
+					"способный",
+					"опытный",
+					"уверенный",
+					"закалённый"
+				]
+			},
+			{
+				"tier_name": "подмастерье",
+				"from_level": 6,
+				"to_level": 10,
+				"grade_labels": [
+					"",
+					"способный",
+					"опытный",
+					"уверенный",
+					"закалённый"
+				]
+			},
+			{
+				"tier_name": "эксперт",
+				"from_level": 11,
+				"to_level": 15,
+				"grade_labels": [
+					"",
+					"способный",
+					"опытный",
+					"уверенный",
+					"закалённый"
+				]
+			},
+			{
+				"tier_name": "мастер",
+				"from_level": 16,
+				"to_level": 20,
+				"grade_labels": [
+					"",
+					"способный",
+					"опытный",
+					"уверенный",
+					"закалённый"
+				]
+			},
+			{
+				"tier_name": "грандмастер",
+				"from_level": 21,
+				"to_level": 25,
+				"grade_labels": [
+					"",
+					"способный",
+					"опытный",
+					"уверенный",
+					"закалённый"
+				]
+			}
+		]
+	},
+	"level_progression": {
+		"enabled": true,
+		"milestones": [
+			{
+				"level": 1,
+				"required_experience": 0,
+				"requirements": [],
+				"unlocks_abilities": [
+					"ability_ore_view"
+				],
+				"unlocks_resources": [
+					"material_iron_ore",
+					"material_copper_ore"
+				],
+				"note": "Стартовый уровень — доступна базовая руда."
+			},
+			{
+				"level": 2,
+				"required_experience": 100,
+				"requirements": [
+					{
+						"req_type": "gather_quantity",
+						"amount": 20,
+						"target_pool": [
+							"material_iron_ore",
+							"material_copper_ore"
+						],
+						"note": "Суммарно по железной и медной руде"
+					},
+					{
+						"req_type": "gather_diversity",
+						"amount": 3,
+						"target_pool": [
+							"material_iron_ore",
+							"material_copper_ore",
+							"material_silver_ore"
+						],
+						"note": "Добыть руду минимум из 3 разных источников"
+					}
+				],
+				"unlocks_abilities": [],
+				"unlocks_resources": [],
+				"note": "Второй уровень мастерства — именно этот пример обсуждался при проектировании схемы."
+			},
+			{
+				"level": 5,
+				"required_experience": 500,
+				"requirements": [],
+				"unlocks_abilities": [],
+				"unlocks_resources": [
+					"material_silver_ore"
+				],
+				"note": "Открывается серебряная руда + шанс побочной добычи (см. 'Формула растущего бонуса' ниже)."
+			}
+		]
+	},
+	"scaling_bonus": {
+		"enabled": true,
+		"bonus_description": "шанс побочной добычи редких материалов при обычной добыче руды",
+		"chance_formula": "0.005 * max(0, PROFESSION_LEVEL - 5)"
+	},
+	"class_synergy": {
+		"enabled": false
+	},
+	"lore": {
+		"enabled": false
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "type": "material_raw", "group": "resource",
+  "id": "material_silver_ore", "name": "Серебряная руда",
+  "category": "metal", "subtype": "silver", "processing_stage": "raw",
+  "rarity": "4_uncommon", "quality": "normal", "value": 12, "weight": 1.9, "max_stack": 100,
+  "tags": ["material", "crafting", "magic"],
+  "ore_data": {"enabled": true, "metal": "silver", "purity": 0.5, "smelting_yield": 0.45, "smelting_temperature": 961},
+  "uses": {"enabled": true, "possible_uses": ["crafting", "blacksmithing", "trade", "enchanting"]}
+}

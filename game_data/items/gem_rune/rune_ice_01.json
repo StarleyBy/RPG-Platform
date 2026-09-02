@@ -1,0 +1,72 @@
+{
+	"type": "gem_rune",
+	"group": "resource",
+	"id": "rune_ice_01",
+	"name": "Руна льда",
+	"socket_type": "rune",
+	"gem_variety": "ruby",
+	"rarity": "6_epic",
+	"gem_tier": 1,
+	"value": 250,
+	"max_stack": 20,
+	"tags": [
+		"gem",
+		"socketable"
+	],
+	"socket_bonus": {
+		"enabled": true,
+		"bonuses": [
+			{
+				"verb": "reduces",
+				"target": "speed",
+				"scope": "attacker",
+				"modifier_type": "percent_of_base",
+				"value": "15%",
+				"formula": "",
+				"condition": "in_combat",
+				"note": ""
+			},
+			{
+				"verb": "amplifies",
+				"target": "crit_chance",
+				"scope": "attacker",
+				"modifier_type": "percent_of_base",
+				"value": "5%",
+				"formula": "",
+				"condition": "in_combat",
+				"note": ""
+			},
+			{
+				"verb": "increases",
+				"target": "ice_damage",
+				"scope": "attacker",
+				"modifier_type": "percent_of_base",
+				"value": "30%",
+				"formula": "",
+				"condition": "in_combat",
+				"note": "для оружия"
+			},
+			{
+				"verb": "increases",
+				"target": "resistance_ice",
+				"scope": "self",
+				"modifier_type": "percent_of_base",
+				"value": "30%",
+				"formula": "",
+				"condition": "in_combat",
+				"note": ""
+			}
+		]
+	},
+	"rune_combo": {
+		"enabled": false
+	},
+	"elemental": {
+		"enabled": true,
+		"element": "ice",
+		"purity": 1
+	},
+	"crafting_use": {
+		"enabled": false
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_shadow_shroom", "name": "Теневик",
+  "plant_family": "shrub",
+  "description": "Подземный пластинчатый гриб-паразит, растущий на корнях Деревьев Памяти. Поглощает остаточные ментальные волны эльфов.",
+  "growth": {"enabled": true, "native_biomes": ["underdark_forest", "underdark_caves"], "native_seasons": ["varken", "norra", "eld"],
+    "harvestable_parts": ["velvet_cap", "spore_dust"]},
+  "lore": {"enabled": false}
+}

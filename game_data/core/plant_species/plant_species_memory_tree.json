@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_memory_tree", "name": "Памятник",
+  "plant_family": "tree",
+  "description": "Дерево, ассоциируемое с сезоном Эльд — временем памяти и предсказаний.",
+  "growth": {"enabled": true, "native_biomes": ["forest", "tundra"], "native_seasons": ["eld"],
+    "harvestable_parts": ["bark", "resin", "seed"]},
+  "lore": {"enabled": true, "lore_text": "Считается, что кора Памятника, собранная в Эльд, усиливает пророческие сны."}
+}

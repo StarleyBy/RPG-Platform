@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_steppe_whisper", "name": "Степной шёпот",
+  "plant_family": "grass",
+  "description": "Тонкие полые стебли издают тихий мелодичный свист на ветру. Пыльца стимулирует память.",
+  "growth": {"enabled": true, "native_biomes": ["steppe", "grassland"], "native_seasons": ["solvar", "merid"],
+    "harvestable_parts": ["stalk", "pollen"]},
+  "lore": {"enabled": false}
+}

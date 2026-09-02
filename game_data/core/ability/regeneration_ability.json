@@ -1,0 +1,33 @@
+{
+	"type": "ability",
+	"group": "core",
+	"id": "regeneration_ability",
+	"name": "Регенерация здоровья",
+	"ability_type": "passive",
+	"description": "Восстановление здоровья вне боя",
+	"tags": [],
+	"effects": {
+		"enabled": true,
+		"effects_list": [
+			{
+				"verb": "restores",
+				"target": "health",
+				"scope": "self",
+				"modifier_type": "per_missing_health_percent",
+				"value": "1",
+				"formula": "",
+				"condition": "out_of_combat",
+				"note": ""
+			}
+		]
+	},
+	"requirements": {
+		"enabled": false
+	},
+	"cost": {
+		"enabled": false
+	},
+	"lore": {
+		"enabled": false
+	}
+}

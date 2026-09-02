@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_sleepvine", "name": "Сонная лоза",
+  "plant_family": "vine",
+  "description": "Вьющееся растение с усыпляющим ароматом цветков.",
+  "growth": {"enabled": true, "native_biomes": ["forest", "jungle"], "native_seasons": ["norra", "eld"],
+    "harvestable_parts": ["flower", "sap"]},
+  "lore": {"enabled": false}
+}

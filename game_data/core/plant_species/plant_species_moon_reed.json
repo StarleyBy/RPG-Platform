@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_moon_reed", "name": "Лунный тростник",
+  "plant_family": "grass",
+  "description": "Растёт у воды, светится слабым голубоватым светом в полнолуние.",
+  "growth": {"enabled": true, "native_biomes": ["swamp", "grassland"], "native_seasons": ["arven", "solvar"],
+    "harvestable_parts": ["stem", "root"]},
+  "lore": {"enabled": false}
+}

@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_ashleaf", "name": "Пепельник",
+  "plant_family": "shrub",
+  "description": "Серо-пепельные листья, устойчив к засухе и жаре.",
+  "growth": {"enabled": true, "native_biomes": ["wasteland", "volcanic"], "native_seasons": ["merid", "varken"],
+    "harvestable_parts": ["leaf", "bark"]},
+  "lore": {"enabled": false}
+}

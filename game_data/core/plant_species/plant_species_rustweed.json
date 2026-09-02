@@ -1,0 +1,9 @@
+{
+  "type": "plant_species", "group": "core",
+  "id": "plant_species_rustweed", "name": "Ржавница",
+  "plant_family": "moss",
+  "description": "Оранжевый лишайник, растущий на металлических рудах. Выделяет кислоту, растворяющую окислы железа, что делает его незаменимым для чистки механизмов.",
+  "growth": {"enabled": true, "native_biomes": ["mountains", "highlands"], "native_seasons": ["varken", "norra"],
+    "harvestable_parts": ["acidic_thallus"]},
+  "lore": {"enabled": false}
+}
