@@ -1,21 +1,6 @@
-/**
- * Фабрика простых полей формы (string/text/int/float/range/bool/color/
- * tags/enum/formula) — аналог SchemaFieldFactory из Godot-версии. Опции
- * enum отображаются по-русски (ruLabel), но get() всегда возвращает
- * английское машинное значение. allow_custom=true добавляет пункт
- * "— свой вариант —" со свободным полем.
- *
- * Поля manifest_ref/manifest_multiref/vocab_multiselect/level_track/
- * tier_scale вынесены в js/fields/reference-fields.js,
- * js/fields/level-track-field.js и js/fields/tier-scale-field.js — они
- * устроены принципиально иначе (тянут варианты не из статичного словаря,
- * а из живого состояния STATE.manifestIndex, либо это составные
- * повторяемые структуры).
- */
-
 const CUSTOM_MARK = "custom...";
 
-function buildField(fdef, vocab, initialValue) {
+function buildField(fdef, vocab, initialValue, context) {
   const type = fdef.type || "string";
   switch (type) {
     case "string": case "id": case "reference": return buildStringField(fdef, initialValue);
@@ -34,6 +19,8 @@ function buildField(fdef, vocab, initialValue) {
     case "manifest_multiref": return buildManifestMultirefField(fdef, initialValue, false);
     case "level_track": return buildLevelTrackField(fdef, initialValue);
     case "tier_scale": return buildTierScaleField(fdef, initialValue);
+    case "dependent_enum": return buildDependentEnumField(fdef, vocab, initialValue, context && context.controlsByKey);
+    case "dependent_multiselect": return buildDependentMultiselectField(fdef, vocab, initialValue, context && context.controlsByKey);
     default: return buildStringField(fdef, initialValue);
   }
 }
@@ -104,10 +91,6 @@ function buildTagsField(fdef, val) {
   };
 }
 
-// enum: показываем ruLabel(значение) в тексте <option>, но value остаётся
-// английским машинным токеном. allow_custom=true добавляет пункт
-// "— свой вариант —" со свободным текстовым полем рядом (то же самое,
-// что делают строки ability_list).
 function optionsForField(fdef, vocab) {
   let options = fdef.options || [];
   if (!options.length && fdef.options_ref) options = vocab[fdef.options_ref] || [];
@@ -115,9 +98,9 @@ function optionsForField(fdef, vocab) {
 }
 
 function buildEnumField(fdef, vocab, val) {
-  const rawOptions = optionsForField(fdef, vocab); // до сортировки — тут ещё верны индексы default_index
+  const rawOptions = optionsForField(fdef, vocab);
   const defaultValue = rawOptions[fdef.default_index || 0] || "";
-  const options = sortByRuLabel(rawOptions); // отображение — по алфавиту RU-перевода
+  const options = sortByRuLabel(rawOptions);
 
   const select = el("select");
   for (const o of options) select.appendChild(el("option", { value: o, text: ruLabel(o) }));
@@ -164,7 +147,7 @@ function buildFormulaField(fdef, val) {
   });
   const hint = el("div", {
     class: "hint",
-    text: "Переменные: PLAYER_LEVEL, ITEM_LEVEL, BASE_VALUE, TARGET_MAX_HP, STAT_*, PROFESSION_LEVEL (уровень профессии — см. поле 'Масштабирование от уровня профессии' у способности, если формула его использует)"
+    text: "Переменные: PLAYER_LEVEL, ITEM_LEVEL, BASE_VALUE, TARGET_MAX_HP, STAT_*, PROFESSION_LEVEL"
   });
   const wrap = el("div", { class: "field-block" }, [el("label", { text: fdef.label || fdef.key }), input, hint]);
   return { wrapEl: wrap, get: () => input.value, set: v => input.value = v ?? "" };

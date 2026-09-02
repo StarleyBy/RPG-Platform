@@ -4,6 +4,7 @@
   "label": "Зелья и Отвары",
   "icon": "🧪",
   "color": "#8a4dd6",
+  "description": "Лечебные, магические и алхимические зелья. Отдельная схема для трав/лекарств не нужна — это она и есть: рецепт ссылается на реальные растения/материалы страницы 'Растения' и 'Материалы' через поле ниже.",
   "save_path": "res://game_data/items/potion/%s.json",
   "base_fields": [
     {"key": "id", "label": "ID предмета", "type": "id", "default": "potion_new_01"},
@@ -40,8 +41,9 @@
       "toggle_label": "⚗️ Рецепт варки",
       "default_on": false,
       "fields": [
-        {"key": "required_ingredients", "label": "Ингредиенты (ID, через запятую)", "type": "tags", "default": []},
-        {"key": "required_skill", "label": "Требуемый навык", "type": "string", "default": "alchemy"},
+        {"key": "required_ingredients", "label": "Ингредиенты", "type": "manifest_multiref",
+          "ref_type": ["plant_organic", "material_raw", "monster_animal_part"]},
+        {"key": "required_skill", "label": "Требуемая профессия", "type": "manifest_ref", "ref_type": "profession"},
         {"key": "brew_time_minutes", "label": "Время варки (мин)", "type": "float", "default": 10},
         {"key": "critical_success_bonus", "label": "Бонус при крит. успехе", "type": "string", "default": ""}
       ]

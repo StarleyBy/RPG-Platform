@@ -4,13 +4,14 @@
   "label": "Растения, Травы, Ингредиенты",
   "icon": "🌿",
   "color": "#4a9e5c",
-  "description": "Конкретный собираемый предмет (лист, корень, цветок...) от вида растения — сам вид описывается отдельным манифестом на странице 'Вид растения'.",
+  "description": "Конкретный собираемый предмет (лист, корень, цветок...) от вида растения — сам вид описывается отдельным манифестом на странице 'Вид растения'. Выбери 'Вид растения' первым — часть, биомы и сезоны ниже подстроятся под то, что реально указано у этого вида.",
   "save_path": "res://game_data/items/plant/%s.json",
   "base_fields": [
     {"key": "id", "label": "ID предмета", "type": "id", "default": "plant_new_01"},
     {"key": "name", "label": "Название", "type": "string", "default": ""},
     {"key": "species", "label": "Вид растения", "type": "manifest_ref", "ref_type": "plant_species"},
-    {"key": "harvested_part", "label": "Собираемая часть", "type": "enum", "options_ref": "plant_parts"},
+    {"key": "harvested_part", "label": "Собираемая часть", "type": "dependent_enum",
+      "depends_on": "species", "source_path": "growth.harvestable_parts", "fallback_options_ref": "plant_parts"},
     {"key": "growth_stage", "label": "Стадия роста при сборе", "type": "enum",
       "options": ["seed", "sprout", "young", "mature", "flowering", "fruiting", "withered", "dead"]},
     {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 1},
@@ -22,23 +23,75 @@
   ],
   "sections": [
     {
-      "key": "properties",
-      "toggle_label": "🌱 Свойства",
-      "default_on": true,
+      "key": "toxicity",
+      "toggle_label": "☠️ Ядовитое",
+      "default_on": false,
       "fields": [
-        {"key": "poisonous", "label": "Ядовито", "type": "bool", "default": false},
-        {"key": "medicinal", "label": "Лекарственное", "type": "bool", "default": false},
-        {"key": "magical", "label": "Магическое", "type": "bool", "default": false},
-        {"key": "edible", "label": "Съедобно", "type": "bool", "default": false}
+        {"key": "severity", "label": "Степень тяжести", "type": "enum", "options_ref": "toxicity_severity"},
+        {"key": "onset", "label": "Начало действия", "type": "enum", "options_ref": "toxicity_onset"},
+        {"key": "duration_hours", "label": "Длительность действия (часы)", "type": "float", "default": 1},
+        {"key": "symptoms", "label": "Симптомы", "type": "text", "default": ""}
+      ]
+    },
+    {
+      "key": "medicinal_properties",
+      "toggle_label": "💊 Лекарственное",
+      "default_on": false,
+      "fields": [
+        {"key": "effect_categories", "label": "Категории эффекта", "type": "vocab_multiselect", "options_ref": "medicinal_effect_categories"},
+        {"key": "cures_specific_ailment", "label": "Лечит конкретный недуг (если применимо)", "type": "string", "default": ""},
+        {"key": "potency", "label": "Сила эффекта", "type": "float", "default": 1.0},
+        {"key": "notes", "label": "Заметки", "type": "text", "default": ""}
+      ]
+    },
+    {
+      "key": "magical_properties",
+      "toggle_label": "🔮 Магическое",
+      "default_on": false,
+      "fields": [
+        {"key": "magic_school", "label": "Школа магии", "type": "enum", "options_ref": "magic_schools", "allow_custom": true},
+        {"key": "application_methods", "label": "Способ применения", "type": "vocab_multiselect", "options_ref": "magic_application_methods"},
+        {"key": "duration_type", "label": "Тип действия", "type": "enum", "options_ref": "magic_duration_types"},
+        {"key": "potentiated_by", "label": "Усиливается в сочетании с (другие растения)", "type": "manifest_multiref", "ref_type": "plant_organic"},
+        {"key": "notes", "label": "Заметки", "type": "text", "default": ""}
+      ]
+    },
+    {
+      "key": "edibility",
+      "toggle_label": "🍽️ Съедобное",
+      "default_on": false,
+      "fields": [
+        {"key": "preparation", "label": "Способ употребления", "type": "vocab_multiselect", "options_ref": "edibility_preparation"},
+        {"key": "consumption_context", "label": "Контекст употребления", "type": "vocab_multiselect", "options_ref": "edibility_context"},
+        {"key": "side_effects", "label": "Побочные эффекты", "type": "text", "default": ""}
+      ]
+    },
+    {
+      "key": "special_effect",
+      "toggle_label": "✨ Особый эффект",
+      "default_on": false,
+      "note": "Флаг для быстрого поиска в базе данных. Сама механика эффекта (например, 'позволяет дышать под водой') задаётся ниже, в разделе 'Эффекты' — это тот же конструктор способностей, что и у предметов, там уже есть цель 'underwater_breathing' и подобные.",
+      "fields": [
+        {"key": "summary", "label": "Краткое описание эффекта", "type": "string", "default": ""}
       ]
     },
     {
       "key": "effects",
-      "toggle_label": "🧪 Алхимические / лечебные эффекты",
+      "toggle_label": "🧪 Эффекты (алхимия/приготовление/использование)",
       "default_on": true,
-      "note": "Что даёт при употреблении/использовании в алхимии — бесконечный список. 'Здоровье'/HP есть в списке целей эффекта — он называется 'health', ищи по алфавиту (список теперь отсортирован).",
+      "note": "Бесконечный список — тот же конструктор, что и у предметов. Здесь же можно задать 'дышать под водой' (target=underwater_breathing) или любой другой эффект из общего словаря целей.",
       "fields": [
         {"key": "effects_list", "label": "Эффекты", "type": "ability_list"}
+      ]
+    },
+    {
+      "key": "processing",
+      "toggle_label": "🪵 Переработка в материал",
+      "default_on": false,
+      "note": "Если эта часть растения (например, кора или ствол) в переработанном виде становится материалом — древесиной, волокном — укажи ссылку на готовый манифест материала. Сами свойства материала (твёрдость, применения — мебель/строительство/оружие/ткани) описываются на странице 'Материалы', здесь только связь.",
+      "fields": [
+        {"key": "yields_material", "label": "Даёт материал", "type": "manifest_ref", "ref_type": "material_raw"},
+        {"key": "processing_notes", "label": "Заметки по переработке", "type": "text", "default": ""}
       ]
     },
     {
@@ -58,8 +111,10 @@
       "toggle_label": "🌦️ Условия появления (биом/сезон/погода/время суток)",
       "default_on": false,
       "fields": [
-        {"key": "biomes", "label": "Биомы", "type": "vocab_multiselect", "options_ref": "biome_types"},
-        {"key": "seasons", "label": "Сезоны (Шесть Времён Велары)", "type": "vocab_multiselect", "options_ref": "velara_seasons"},
+        {"key": "biomes", "label": "Биомы", "type": "dependent_multiselect",
+          "depends_on": "species", "source_path": "growth.native_biomes", "fallback_options_ref": "biome_types"},
+        {"key": "seasons", "label": "Сезоны (Шесть Времён Велары)", "type": "dependent_multiselect",
+          "depends_on": "species", "source_path": "growth.native_seasons", "fallback_options_ref": "velara_seasons"},
         {"key": "weather_requirements", "label": "Требуемая погода", "type": "vocab_multiselect", "options_ref": "weather_types"},
         {"key": "time_from", "label": "Время суток от", "type": "string", "default": ""},
         {"key": "time_to", "label": "Время суток до", "type": "string", "default": ""}

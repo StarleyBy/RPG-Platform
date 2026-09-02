@@ -7,87 +7,18 @@
   "description": "Пример: 'Брусок меди'. Сырьё и переработанные материалы для крафта.",
   "save_path": "res://game_data/items/material/%s.json",
   "base_fields": [
-    {
-      "key": "id",
-      "label": "ID предмета",
-      "type": "id",
-      "default": "material_copper_ingot"
-    },
-    {
-      "key": "name",
-      "label": "Название",
-      "type": "string",
-      "default": "Брусок меди"
-    },
-    {
-      "key": "category",
-      "label": "Категория",
-      "type": "enum",
-      "options_ref": "material_categories"
-    },
-    {
-      "key": "subtype",
-      "label": "Подтип",
-      "type": "enum",
-      "options_ref": "velara_materials",
-      "allow_custom": true,
-      "default": "copper"
-    },
-    {
-      "key": "processing_stage",
-      "label": "Стадия обработки",
-      "type": "enum",
-      "options": [
-        "raw",
-        "processed",
-        "refined",
-        "enchanted",
-        "advanced",
-        "master_material"
-      ]
-    },
-    {
-      "key": "rarity",
-      "label": "Редкость",
-      "type": "enum",
-      "options_ref": "rarity_tiers",
-      "default_index": 2
-    },
-    {
-      "key": "quality",
-      "label": "Качество",
-      "type": "enum",
-      "options_ref": "quality_tiers",
-      "default_index": 2
-    },
-    {
-      "key": "value",
-      "label": "Цена (за единицу)",
-      "type": "float",
-      "default": 8,
-      "min": 0
-    },
-    {
-      "key": "weight",
-      "label": "Вес (за единицу)",
-      "type": "float",
-      "default": 1.0
-    },
-    {
-      "key": "max_stack",
-      "label": "Макс. стак",
-      "type": "int",
-      "default": 100
-    },
-    {
-      "key": "tags",
-      "label": "Теги",
-      "type": "tags",
-      "default": [
-        "material",
-        "crafting"
-      ]
-    }
+    {"key": "id", "label": "ID предмета", "type": "id", "default": "material_copper_ingot"},
+    {"key": "name", "label": "Название", "type": "string", "default": "Брусок меди"},
+    {"key": "category", "label": "Категория", "type": "enum", "options_ref": "material_categories"},
+    {"key": "subtype", "label": "Подтип", "type": "enum", "options_ref": "velara_materials", "allow_custom": true, "default": "copper"},
+    {"key": "processing_stage", "label": "Стадия обработки", "type": "enum",
+      "options": ["raw", "processed", "refined", "enchanted", "advanced", "master_material"]},
+    {"key": "rarity", "label": "Редкость", "type": "enum", "options_ref": "rarity_tiers", "default_index": 2},
+    {"key": "quality", "label": "Качество", "type": "enum", "options_ref": "quality_tiers", "default_index": 2},
+    {"key": "value", "label": "Цена (за единицу)", "type": "float", "default": 8, "min": 0},
+    {"key": "weight", "label": "Вес (за единицу)", "type": "float", "default": 1.0},
+    {"key": "max_stack", "label": "Макс. стак", "type": "int", "default": 100},
+    {"key": "tags", "label": "Теги", "type": "tags", "default": ["material", "crafting"]}
   ],
   "sections": [
     {
@@ -95,63 +26,15 @@
       "toggle_label": "🔩 Физические свойства",
       "default_on": true,
       "fields": [
-        {
-          "key": "hardness",
-          "label": "Твёрдость",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "density",
-          "label": "Плотность",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "durability_bonus",
-          "label": "Бонус прочности предмету",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "conductivity",
-          "label": "Электропроводность",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "heat_resistance",
-          "label": "Термостойкость",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "corrosion_resistance",
-          "label": "Стойкость к коррозии",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "radiation_resistance",
-          "label": "Радиационная стойкость",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "physical_state",
-          "label": "Агрегатное состояние",
-          "type": "enum",
-          "options": [
-            "solid",
-            "liquid",
-            "gas",
-            "plasma",
-            "powder",
-            "gel",
-            "crystal",
-            "energy"
-          ]
-        }
+        {"key": "hardness", "label": "Твёрдость", "type": "float", "default": 0},
+        {"key": "density", "label": "Плотность", "type": "float", "default": 0},
+        {"key": "durability_bonus", "label": "Бонус прочности предмету", "type": "float", "default": 0},
+        {"key": "conductivity", "label": "Электропроводность", "type": "float", "default": 0},
+        {"key": "heat_resistance", "label": "Термостойкость", "type": "float", "default": 0},
+        {"key": "corrosion_resistance", "label": "Стойкость к коррозии", "type": "float", "default": 0},
+        {"key": "radiation_resistance", "label": "Радиационная стойкость", "type": "float", "default": 0},
+        {"key": "physical_state", "label": "Агрегатное состояние", "type": "enum",
+          "options": ["solid", "liquid", "gas", "plasma", "powder", "gel", "crystal", "energy"]}
       ]
     },
     {
@@ -159,54 +42,14 @@
       "toggle_label": "🔮 Магические свойства",
       "default_on": false,
       "fields": [
-        {
-          "key": "magic_affinity",
-          "label": "Магическое сродство",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "mana_conductivity",
-          "label": "Проводимость маны",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "enchantment_capacity",
-          "label": "Ёмкость зачарования",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "elemental_affinity_fire",
-          "label": "Сродство: огонь",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "elemental_affinity_ice",
-          "label": "Сродство: холод",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "elemental_affinity_lightning",
-          "label": "Сродство: молния",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "elemental_affinity_shadow",
-          "label": "Сродство: тьма",
-          "type": "float",
-          "default": 0
-        },
-        {
-          "key": "elemental_affinity_holy",
-          "label": "Сродство: свет",
-          "type": "float",
-          "default": 0
-        }
+        {"key": "magic_affinity", "label": "Магическое сродство", "type": "float", "default": 0},
+        {"key": "mana_conductivity", "label": "Проводимость маны", "type": "float", "default": 0},
+        {"key": "enchantment_capacity", "label": "Ёмкость зачарования", "type": "float", "default": 0},
+        {"key": "elemental_affinity_fire", "label": "Сродство: огонь", "type": "float", "default": 0},
+        {"key": "elemental_affinity_ice", "label": "Сродство: холод", "type": "float", "default": 0},
+        {"key": "elemental_affinity_lightning", "label": "Сродство: молния", "type": "float", "default": 0},
+        {"key": "elemental_affinity_shadow", "label": "Сродство: тьма", "type": "float", "default": 0},
+        {"key": "elemental_affinity_holy", "label": "Сродство: свет", "type": "float", "default": 0}
       ]
     },
     {
@@ -214,50 +57,13 @@
       "toggle_label": "⛰️ Данные руды (для металлов из шахт)",
       "default_on": false,
       "fields": [
-        {
-          "key": "metal",
-          "label": "Металл",
-          "type": "string",
-          "default": "copper"
-        },
-        {
-          "key": "purity",
-          "label": "Чистота (0-1)",
-          "type": "float",
-          "default": 0.7,
-          "step": 0.01
-        },
-        {
-          "key": "smelting_yield",
-          "label": "Выход при плавке (0-1)",
-          "type": "float",
-          "default": 0.65,
-          "step": 0.01
-        },
-        {
-          "key": "smelting_temperature",
-          "label": "Температура плавки (°C)",
-          "type": "float",
-          "default": 1080
-        },
-        {
-          "key": "impurities",
-          "label": "Примеси",
-          "type": "tags",
-          "default": []
-        },
-        {
-          "key": "spawn_depth_min",
-          "label": "Глубина залегания (мин)",
-          "type": "int",
-          "default": 0
-        },
-        {
-          "key": "spawn_depth_max",
-          "label": "Глубина залегания (макс)",
-          "type": "int",
-          "default": 100
-        }
+        {"key": "metal", "label": "Металл", "type": "string", "default": "copper"},
+        {"key": "purity", "label": "Чистота (0-1)", "type": "float", "default": 0.7, "step": 0.01},
+        {"key": "smelting_yield", "label": "Выход при плавке (0-1)", "type": "float", "default": 0.65, "step": 0.01},
+        {"key": "smelting_temperature", "label": "Температура плавки (°C)", "type": "float", "default": 1080},
+        {"key": "impurities", "label": "Примеси", "type": "tags", "default": []},
+        {"key": "spawn_depth_min", "label": "Глубина залегания (мин)", "type": "int", "default": 0},
+        {"key": "spawn_depth_max", "label": "Глубина залегания (макс)", "type": "int", "default": 100}
       ]
     },
     {
@@ -266,11 +72,7 @@
       "default_on": false,
       "note": "Например: Iron Ore -> Iron Ingot -> Steel -> Tempered Steel -> Enchanted Steel.",
       "fields": [
-        {
-          "key": "processing_recipes",
-          "label": "Рецепты переработки",
-          "type": "ability_list"
-        }
+        {"key": "processing_recipes", "label": "Рецепты переработки", "type": "ability_list"}
       ]
     },
     {
@@ -278,26 +80,9 @@
       "toggle_label": "☢️ Загрязнение / состояние (для sci-fi/survival)",
       "default_on": false,
       "fields": [
-        {
-          "key": "contamination_state",
-          "label": "Состояние",
-          "type": "enum",
-          "options": [
-            "clean",
-            "contaminated",
-            "infected",
-            "radioactive",
-            "corrupted",
-            "toxic",
-            "sterile"
-          ]
-        },
-        {
-          "key": "purification_method",
-          "label": "Метод очистки",
-          "type": "string",
-          "default": ""
-        }
+        {"key": "contamination_state", "label": "Состояние", "type": "enum",
+          "options": ["clean", "contaminated", "infected", "radioactive", "corrupted", "toxic", "sterile"]},
+        {"key": "purification_method", "label": "Метод очистки", "type": "string", "default": ""}
       ]
     },
     {
@@ -305,24 +90,9 @@
       "toggle_label": "🔬 Исследование / идентификация",
       "default_on": false,
       "fields": [
-        {
-          "key": "identified",
-          "label": "Идентифицирован",
-          "type": "bool",
-          "default": true
-        },
-        {
-          "key": "required_skill",
-          "label": "Требуемый навык",
-          "type": "string",
-          "default": ""
-        },
-        {
-          "key": "research_difficulty",
-          "label": "Сложность исследования",
-          "type": "float",
-          "default": 0
-        }
+        {"key": "identified", "label": "Идентифицирован", "type": "bool", "default": true},
+        {"key": "required_skill", "label": "Требуемая профессия", "type": "manifest_ref", "ref_type": "profession"},
+        {"key": "research_difficulty", "label": "Сложность исследования", "type": "float", "default": 0}
       ]
     },
     {
@@ -330,25 +100,10 @@
       "toggle_label": "🔗 Связь с источником (существо/растение/локация)",
       "default_on": false,
       "fields": [
-        {
-          "key": "source_type",
-          "label": "Тип источника",
-          "type": "enum",
-          "options": [
-            "mine",
-            "creature",
-            "plant",
-            "location",
-            "crafted",
-            "quest"
-          ]
-        },
-        {
-          "key": "source_id",
-          "label": "ID источника (например существа)",
-          "type": "reference",
-          "default": ""
-        }
+        {"key": "source_type", "label": "Тип источника", "type": "enum",
+          "options": ["mine", "creature", "plant", "location", "crafted", "quest"]},
+        {"key": "source_ref", "label": "Источник", "type": "manifest_ref",
+          "ref_type": ["plant_species", "enemy_base", "location_site"], "allow_custom": true}
       ]
     },
     {
@@ -357,16 +112,7 @@
       "default_on": true,
       "note": "Ресурс не должен знать, для чего он создан — перечисли все возможные применения.",
       "fields": [
-        {
-          "key": "possible_uses",
-          "label": "Применения",
-          "type": "vocab_multiselect",
-          "options_ref": "item_uses",
-          "default": [
-            "crafting",
-            "trade"
-          ]
-        }
+        {"key": "possible_uses", "label": "Применения", "type": "vocab_multiselect", "options_ref": "item_uses"}
       ]
     }
   ]
