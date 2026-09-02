@@ -3,11 +3,3 @@
 # попадает только .gitkeep, чтобы структура папок сохранялась при клоне.
 game_data/**/*.json
 !game_data/**/.gitkeep
-
-.DS_Store
-Thumbs.db
-
-# GitHub Pages не нужно ничего собирать — это статический сайт как есть,
-# но на случай локальных экспериментов с bundler-ами:
-node_modules/
-dist/
