@@ -1,0 +1,33 @@
+{
+	"type": "ability",
+	"group": "core",
+	"id": "regeneration_mana_1%",
+	"name": "Базовое восстановление маны",
+	"ability_type": "passive",
+	"description": "",
+	"tags": [],
+	"effects": {
+		"enabled": true,
+		"effects_list": [
+			{
+				"verb": "grants",
+				"target": "mana_regen",
+				"scope": "self",
+				"modifier_type": "percent_of_base",
+				"value": "1%",
+				"formula": "",
+				"condition": "out_of_combat",
+				"note": ""
+			}
+		]
+	},
+	"requirements": {
+		"enabled": false
+	},
+	"cost": {
+		"enabled": false
+	},
+	"lore": {
+		"enabled": false
+	}
+}

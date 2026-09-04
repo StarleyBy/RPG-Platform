@@ -1,0 +1,41 @@
+{
+	"type": "character_class",
+	"group": "core",
+	"id": "class_mage",
+	"name": "Маг",
+	"class_role": "dps_magic",
+	"description": "",
+	"proficiencies": {
+		"enabled": true,
+		"weapon_proficiency": [
+			"wand",
+			"dagger",
+			"staff",
+			"psi_staff"
+		],
+		"armor_proficiency": [
+			"leather",
+			"bio_armor",
+			"cloth"
+		]
+	},
+	"kit": {
+		"enabled": true,
+		"class_abilities": [
+			"regeneration_mana_1%"
+		]
+	},
+	"combat_profile": {
+		"enabled": true,
+		"innate_resistances": [],
+		"innate_vulnerabilities": [
+			"physical"
+		]
+	},
+	"faction_ties": {
+		"enabled": false
+	},
+	"lore": {
+		"enabled": false
+	}
+}

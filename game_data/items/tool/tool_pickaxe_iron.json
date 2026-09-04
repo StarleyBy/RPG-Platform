@@ -1,0 +1,28 @@
+{
+	"type": "tool",
+	"group": "equipment",
+	"id": "tool_pickaxe_iron",
+	"name": "",
+	"tool_type": "pickaxe",
+	"profession": "mining",
+	"rarity": "3_common",
+	"quality": "normal",
+	"value": 60,
+	"durability_max": 100,
+	"tags": [
+		"tool"
+	],
+	"efficiency": {
+		"enabled": true,
+		"gather_speed_bonus": 5,
+		"yield_bonus": 5,
+		"rare_find_bonus": 5
+	},
+	"special_abilities": {
+		"enabled": false
+	},
+	"requirements": {
+		"enabled": true,
+		"required_skill_level": 1
+	}
+}

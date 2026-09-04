@@ -1,0 +1,33 @@
+{
+	"type": "ability",
+	"group": "core",
+	"id": "regeneration_hp_1%_",
+	"name": "Базовое восстановление здоровья",
+	"ability_type": "passive",
+	"description": "",
+	"tags": [],
+	"effects": {
+		"enabled": true,
+		"effects_list": [
+			{
+				"verb": "grants",
+				"target": "health_regen",
+				"scope": "self",
+				"modifier_type": "percent_of_base",
+				"value": "1%",
+				"formula": "",
+				"condition": "out_of_combat",
+				"note": ""
+			}
+		]
+	},
+	"requirements": {
+		"enabled": false
+	},
+	"cost": {
+		"enabled": false
+	},
+	"lore": {
+		"enabled": false
+	}
+}

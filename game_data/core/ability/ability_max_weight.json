@@ -1,0 +1,33 @@
+{
+	"type": "ability",
+	"group": "core",
+	"id": "ability_max_weight",
+	"name": "Тягач",
+	"ability_type": "passive",
+	"description": "",
+	"tags": [],
+	"effects": {
+		"enabled": true,
+		"effects_list": [
+			{
+				"verb": "amplifies",
+				"target": "carry_weight",
+				"scope": "self",
+				"modifier_type": "percent_of_base",
+				"value": "10%",
+				"formula": "",
+				"condition": "out_of_combat",
+				"note": ""
+			}
+		]
+	},
+	"requirements": {
+		"enabled": false
+	},
+	"cost": {
+		"enabled": false
+	},
+	"lore": {
+		"enabled": false
+	}
+}
